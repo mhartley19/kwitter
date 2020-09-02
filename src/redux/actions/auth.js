@@ -8,6 +8,7 @@ export const LOGOUT = "AUTH/LOGOUT";
 export const REGISTER = "AUTH/REGISTER";
 export const REGISTER_SUCCESS = "AUTH/REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "AUTH/REGISTER_FAILURE";
+
 /*
  AUTH ACTIONS (this is a thunk....)
  THUNKS: --> https://github.com/reduxjs/redux-thunk#whats-a-thunk
