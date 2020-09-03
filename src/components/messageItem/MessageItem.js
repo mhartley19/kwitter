@@ -8,7 +8,12 @@ function MessageItem ({user, text, id, date, likes}){
         // console.log(`username: ${username} id: ${id} liked: ${likes.map(like => like.username ===  username)
         return (likes.some(like => like.username === username ))
     }
-        
+    const toggleLike = () => {
+        if(isLiked){
+            
+
+        }
+    }    
 
 
     return (

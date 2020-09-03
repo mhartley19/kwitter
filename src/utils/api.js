@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toggleLike } from "../redux/actions/likeAction";
 
 class API {
   axiosInstance = null;
@@ -82,10 +83,32 @@ async initiateMessages(){
   }
 }
 
+async postLike({id}){
+    try{
+    const result = await this.axiosInstance.post("/likes", {"messageId": id})
+    return result
+  }
+  catch(err){
+    helpMeInstructor(err)
+    throw err
+  }
+}
+
+async deleteLike({id}){
+  try{
+    const result = await this.axiosInstance.delete("/likes", {"messageId": id})
+    return result
+  }
+  catch(err){
+    helpMeInstructor(err)
+    throw err
+  }
 }
 
 
 
+
+}
 
 // WARNING.. do not touch below this line if you want to have a good day =]
 

@@ -1,4 +1,5 @@
 import {LOADING_MESSAGES, INITIATE_SUCCESS, INITIATE_FAILURE} from '../actions/messageActions'
+import { TOGGLE_LIKE } from '../actions/likeAction'
 
 const initialState  = {
     messages: [],
@@ -20,6 +21,8 @@ const messageReducer = (state = initialState, action) =>{
             return{
                 ...state, loading: false, error: "Something went wrong. WTF!"
             }
+        case TOGGLE_LIKE:
+            return state
         default: return state
     }
 }
