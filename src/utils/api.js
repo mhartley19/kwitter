@@ -1,5 +1,4 @@
 import axios from "axios";
-import { REGISTER } from "redux-persist/es/constants";
 
 class API {
   axiosInstance = null;

@@ -1,4 +1,4 @@
-import {FETCH_MESSAGES, LOADING_MESSAGES, INITIATE_SUCCESS, INITIATE_FAILURE} from '../actions/messageActions'
+import {LOADING_MESSAGES, INITIATE_SUCCESS, INITIATE_FAILURE} from '../actions/messageActions'
 
 const initialState  = {
     messages: [],
