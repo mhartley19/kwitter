@@ -1,17 +1,19 @@
 import api from "../../utils/api";
 
-export const  TOGGLE_LIKE = "TOGGLE LIKE"
+export const UPDATE_MESSAGE = 'UPDATED MESSAGE'
 
-export const toggleLike = (isLiked, id) => async (disptach ) => {
+export const toggleLike = (isLiked, id, likeId) => async (dispatch) => {
     try{
+        let payload
         if(isLiked){
-           const payload = await api.deleteLike(id)
+           payload = await api.deleteLike(likeId, id)           
         }else{
-            const payload = await api.postLike(id)
+            payload = await api.postLike(id)            
         }
+        dispatch({type: UPDATE_MESSAGE, payload})
     }
-    catch{
-
+    catch(err){
+            console.log(err)
     }
 
 }
