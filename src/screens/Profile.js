@@ -6,6 +6,10 @@ import { fetchMessages } from "../redux/actions/messageActions";
 import { getUserInfo } from "../redux/actions/userProfile";
 
 export function ProfileScreen() {
+  const picture = {
+    selectedFile: null,
+  };
+
   const user = useSelector((state) => state.auth);
   const userInfo = useSelector((state) => state.user);
   const messages = useSelector((state) => state.messageReducer.messages);
@@ -13,6 +17,11 @@ export function ProfileScreen() {
   const userMessages = messages.filter(
     (message) => message.username === userInfo.username
   );
+
+  const onFileChange = (event) => {
+    picture.selectedFile = event.target.files[0];
+    console.log(picture.selectedFile);
+  };
 
   useEffect(() => {
     dispatch(fetchMessages());
@@ -50,6 +59,16 @@ export function ProfileScreen() {
             key={userInfo.username}
             src={`https://kwitter-api.herokuapp.com${userInfo.pictureLocation}`}
             style={{ width: "200px" }}
+          />
+          <br />
+          <label>Upload a Picture</label>
+          <br />
+          <input
+            type="file"
+            id="ProfilePicture"
+            name="Add Picture"
+            accept=".gif, .jpeg, .png, .jpg"
+            onChange={onFileChange}
           />
           <h4>Username: {userInfo.username}</h4>
           <p>bio: </p>
