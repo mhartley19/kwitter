@@ -18,8 +18,7 @@ const handleInput = (event) => {
 const messages = useSelector(state => state.messageReducer.messages)
 
 const dispatch = useDispatch()
-   
-    useEffect( () =>{ dispatch(fetchMessages())}, [])
+    useEffect( () =>{ dispatch(fetchMessages())}, [messages])
     return( 
     <>
     <MenuContainer />
