@@ -1,4 +1,12 @@
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE } from "../actions";
+import {
+  LOGIN,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT,
+  REGISTER,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+} from "../actions";
 
 // INITIAL STATE
 const INITIAL_STATE = {
@@ -13,19 +21,19 @@ export const authReducer = (state = { ...INITIAL_STATE }, action) => {
     case REGISTER:
       return {
         ...INITIAL_STATE,
-        loading: true
+        loading: true,
       };
     case REGISTER_SUCCESS:
       return {
         ...state,
-        loading: false
+        loading: false,
       };
     case REGISTER_FAILURE:
       return {
         ...INITIAL_STATE,
         loading: false,
-        error: "bad"
-      }
+        error: "bad",
+      };
     case LOGIN:
       return {
         ...INITIAL_STATE,
