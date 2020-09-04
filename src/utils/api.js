@@ -82,29 +82,29 @@ async initiateMessages(){
   }
 }
 
-<<<<<<< src/utils/api.js
 async createNewMessage(message){
   try{
-    const result= await this.axiosInstance.post('/messages',{
-      text: message
-
-    })
+    const result= await this.axiosInstance.post('/messages',
+    {text: message})
     return result
   }
+  catch(err){
+    helpMeInstructor(err)
+    throw err
+  }
+}
 
 async postLike(id){
     try{
       await this.axiosInstance.post("/likes", {"messageId": id})    
       const request = await this.axiosInstance.get(`/messages/${id}`)
     return request
->>>>>>> src/utils/api.js
+
   }
   catch(err){
     helpMeInstructor(err)
     throw err
   }
-
-
 }
 
 
