@@ -82,6 +82,21 @@ async initiateMessages(){
   }
 }
 
+async createNewMessage(message){
+  try{
+    const result= await this.axiosInstance.post('/messages',{
+      text: message
+
+    })
+    return result
+  }
+  catch(err){
+    helpMeInstructor(err)
+    throw err
+  }
+
+}
+
 }
 
 

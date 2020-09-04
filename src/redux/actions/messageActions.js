@@ -4,6 +4,8 @@ export const FETCH_MESSAGES = 'FETCH MESSAGES'
 export const LOADING_MESSAGES = 'LOADING MESSAGES'
 export const INITIATE_SUCCESS = 'INITIATE SUCCESS'
 export const INITIATE_FAILURE = 'INITIATE FAILURE'
+export const NEW_MESSAGE = 'NEW MESSAGE'
+export const POST_NEW_MESSAGE = 'POST NEW MESSAGE'
 
 
 export const fetchMessages = () => async (dispatch, getState) => {
@@ -17,4 +19,17 @@ export const fetchMessages = () => async (dispatch, getState) => {
         dispatch({type: INITIATE_FAILURE, payload: "Something went wrong! OH MY GOD!"})
     }
     
+}
+
+export const newMessage = (data) => async (dispatch) => {
+    try{
+    
+        const payload = await api.createNewMessage(data)
+        dispatch({type: POST_NEW_MESSAGE, payload})
+        .then(dispatch({type: INITIATE_SUCCESS, payload}))
+
+    }
+     catch(err){
+    
+}
 }

@@ -1,9 +1,10 @@
-import {LOADING_MESSAGES, INITIATE_SUCCESS, INITIATE_FAILURE} from '../actions/messageActions'
+import {LOADING_MESSAGES, INITIATE_SUCCESS, INITIATE_FAILURE,NEW_MESSAGE,POST_NEW_MESSAGE} from '../actions/messageActions'
 
 const initialState  = {
     messages: [],
     loading: false,
-    error: ""
+    error: "",
+    newMessageValue: []
 }
 
 const messageReducer = (state = initialState, action) =>{
@@ -20,6 +21,14 @@ const messageReducer = (state = initialState, action) =>{
             return{
                 ...state, loading: false, error: "Something went wrong. WTF!"
             }
+
+
+        case POST_NEW_MESSAGE:
+            return{
+                ...state, newMessageValue: [action.payload.message]
+            }
+
+       
         default: return state
     }
 }
