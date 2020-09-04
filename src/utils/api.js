@@ -127,11 +127,9 @@ class API {
     }
   }
 
-  async putPicture(username, picutureLink) {
+  async putPicture(username) {
     try {
-      const result = await this.axiosInstance.put(
-        `/users/${username}/${picutureLink}`
-      );
+      const result = await this.axiosInstance.put(`/users/${username}/picture`);
       return result;
     } catch (err) {
       helpMeInstructor(err);
