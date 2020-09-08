@@ -130,7 +130,7 @@ class API {
   async getUserMessages(user) {
     try {
       const result = await this.axiosInstance.get(
-        `/messages?limit=25&offset=0&username=${user}`
+        `/messages?limit=100&offset=0&username=${user}`
       );
       return result;
     } catch (err) {
