@@ -3,7 +3,7 @@ import { MenuContainer } from "../components";
 import MessageItem from "../components/messageItem/MessageItem";
 import { useSelector, useDispatch } from "react-redux";
 import { userMessages } from "../redux/actions/messageActions";
-import { getUserInfo } from "../redux/actions/userProfile";
+import { getUserInfo, putUserPicture } from "../redux/actions/userProfile";
 
 export function ProfileScreen() {
   const picture = {
@@ -18,7 +18,23 @@ export function ProfileScreen() {
   //https://www.geeksforgeeks.org/file-uploading-in-react-js/
   const onFileChange = (event) => {
     picture.selectedFile = event.target.files[0];
-    console.log(picture.selectedFile);
+  };
+
+  const onFileUpload = () => {
+    if (picture.selectedFile) {
+      // Create an object of formData
+      const formData = new FormData();
+
+      // Update the formData object
+      formData.append("picture", picture.selectedFile);
+
+      console.log(picture.selectedFile);
+      console.log(picture.selectedFile.name);
+      dispatch(putUserPicture(userInfo.username, formData));
+    } else {
+      console.log("Please select a file.");
+      alert("Please select a file.");
+    }
   };
 
   useEffect(() => {
@@ -28,7 +44,7 @@ export function ProfileScreen() {
   useEffect(() => {
     dispatch(getUserInfo(user.username));
   }, []);
-  console.log(messages);
+
   return (
     <>
       <MenuContainer />
@@ -68,6 +84,7 @@ export function ProfileScreen() {
             accept=".gif, .jpeg, .png, .jpg"
             onChange={onFileChange}
           />
+          <button onClick={onFileUpload}>Upload!</button>
           <h4>Username: {userInfo.username}</h4>
           <p>bio: </p>
           <p>date joined Kwitter</p>

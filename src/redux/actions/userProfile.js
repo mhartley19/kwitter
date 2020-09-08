@@ -12,9 +12,9 @@ export const getUserInfo = (user) => async (dispatch) => {
   }
 };
 
-export const putUserPicture = (user) => async (dispatch) => {
+export const putUserPicture = (user, file) => async (dispatch) => {
   try {
-    const payload = await api.putPicture(user);
+    const payload = await api.putPicture(user, file);
     dispatch({ type: PUT_PICTURE, payload });
   } catch (err) {
     console.log(err);
