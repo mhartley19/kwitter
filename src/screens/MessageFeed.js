@@ -3,6 +3,7 @@ import MessageItem from "../components/messageItem/MessageItem";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMessages, newMessage } from "../redux/actions/messageActions";
 import { MenuContainer } from "../components";
+import api from "../utils/api";
 
 export function MessageFeed() {
   const [newMessageInput, setNewMessageInput] = useState();
