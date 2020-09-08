@@ -2,44 +2,21 @@ import React, { useEffect } from "react";
 import { MenuContainer } from "../components";
 import MessageItem from "../components/messageItem/MessageItem";
 import { useSelector, useDispatch } from "react-redux";
-import { userMessages } from "../redux/actions/messageActions";
-import { getUserInfo, putUserPicture } from "../redux/actions/userProfile";
+import { fetchMessages } from "../redux/actions/messageActions";
+import { getUserInfo } from "../redux/actions/userProfile";
 
 export function ProfileScreen() {
-  const picture = {
-    selectedFile: null,
-  };
-
   const user = useSelector((state) => state.auth);
   const userInfo = useSelector((state) => state.user);
-  const messages = useSelector((state) => state.messageReducer.userMessages);
+  const messages = useSelector((state) => state.messageReducer.messages);
   const dispatch = useDispatch();
-
-  //https://www.geeksforgeeks.org/file-uploading-in-react-js/
-  const onFileChange = (event) => {
-    picture.selectedFile = event.target.files[0];
-  };
-
-  const onFileUpload = () => {
-    if (picture.selectedFile) {
-      // Create an object of formData
-      const formData = new FormData();
-
-      // Update the formData object
-      formData.append("picture", picture.selectedFile);
-
-      console.log(picture.selectedFile);
-      console.log(picture.selectedFile.name);
-      dispatch(putUserPicture(userInfo.username, formData));
-    } else {
-      console.log("Please select a file.");
-      alert("Please select a file.");
-    }
-  };
+  const userMessages = messages.filter(
+    (message) => message.username === userInfo.username
+  );
 
   useEffect(() => {
-    dispatch(userMessages(user.username));
-  }, [user]);
+    dispatch(fetchMessages());
+  }, [messages]);
 
   useEffect(() => {
     dispatch(getUserInfo(user.username));
@@ -74,17 +51,6 @@ export function ProfileScreen() {
             src={`https://kwitter-api.herokuapp.com${userInfo.pictureLocation}`}
             style={{ width: "200px" }}
           />
-          <br />
-          <label>Upload a Picture</label>
-          <br />
-          <input
-            type="file"
-            id="ProfilePicture"
-            name="Add Picture"
-            accept=".gif, .jpeg, .png, .jpg"
-            onChange={onFileChange}
-          />
-          <button onClick={onFileUpload}>Upload!</button>
           <h4>Username: {userInfo.username}</h4>
           <p>bio: </p>
           <p>date joined Kwitter</p>
@@ -100,7 +66,7 @@ export function ProfileScreen() {
             height: "1000px",
           }}
         >
-          {messages.map((message) => (
+          {userMessages.map((message) => (
             <MessageItem
               user={message.username}
               text={message.text}
