@@ -15,24 +15,16 @@ export function ProfileScreen() {
   const messages = useSelector((state) => state.messageReducer.userMessages);
   const dispatch = useDispatch();
 
-  //https://www.geeksforgeeks.org/file-uploading-in-react-js/
   const onFileChange = (event) => {
     picture.selectedFile = event.target.files[0];
   };
 
   const onFileUpload = () => {
     if (picture.selectedFile) {
-      // Create an object of formData
-      const formData = new FormData();
-
-      // Update the formData object
-      formData.append("picture", picture.selectedFile);
-
-      console.log(picture.selectedFile);
-      console.log(picture.selectedFile.name);
-      dispatch(putUserPicture(userInfo.username, formData));
+      const pictureData = new FormData();
+      pictureData.append("picture", picture.selectedFile);
+      dispatch(putUserPicture(userInfo.username, pictureData));
     } else {
-      console.log("Please select a file.");
       alert("Please select a file.");
     }
   };
@@ -97,7 +89,6 @@ export function ProfileScreen() {
             padding: "15px",
             background: "rgb(181, 195, 235)",
             width: "400px",
-            height: "1000px",
           }}
         >
           {messages.map((message) => (
