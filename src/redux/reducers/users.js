@@ -8,7 +8,6 @@ const initialState = {
   googleId: "",
   createdAt: "",
   updatedAt: "",
-  profilePicture: {},
 };
 
 const getUserReducer = (state = { ...initialState }, action) => {
@@ -34,10 +33,7 @@ const getUserReducer = (state = { ...initialState }, action) => {
         updatedAt,
       };
     case PUT_PICTURE:
-      return {
-        ...state,
-        profilePicture: action.payload,
-      };
+      return state;
     default:
       return state;
   }
