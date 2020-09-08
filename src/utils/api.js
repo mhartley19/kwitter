@@ -95,6 +95,18 @@ class API {
     }
   }
 
+  async deleteOldMessage(id) {
+    try {
+      const result = await this.axiosInstance.delete(`/messages/${id}`)
+      
+      return result;
+    }
+     catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
   async postLike(id) {
     try {
       await this.axiosInstance.post("/likes", { messageId: id });

@@ -15,9 +15,11 @@ export function MessageFeed() {
   const messages = useSelector((state) => state.messageReducer.messages);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
+    console.log('rendering feed')
     dispatch(fetchMessages());
-  }, [messages]);
+  }, []);
   return (
     <>
       <MenuContainer />
@@ -41,7 +43,9 @@ export function MessageFeed() {
           likes={message.likes}
           key={message.id}
         />
+        
       ))}
+
     </>
   );
 }
