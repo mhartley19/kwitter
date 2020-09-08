@@ -127,6 +127,18 @@ class API {
     }
   }
 
+  async getUserMessages(user) {
+    try {
+      const result = await this.axiosInstance.get(
+        `/messages?limit=25&offset=0&username=${user}`
+      );
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
   async putPicture(username) {
     try {
       const result = await this.axiosInstance.put(`/users/${username}/picture`);
