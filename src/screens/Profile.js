@@ -8,7 +8,8 @@ import { getUserInfo } from "../redux/actions/userProfile";
 export function ProfileScreen() {
   const user = useSelector((state) => state.auth);
   const userInfo = useSelector((state) => state.user);
-  const messages = useSelector((state) => state.messageReducer.messages);
+  const messages = useSelector((state) => state.messageReducer.userMessages);
+ 
   const dispatch = useDispatch();
   const userMessages = messages.filter(
     (message) => message.username === userInfo.username
@@ -66,7 +67,7 @@ export function ProfileScreen() {
             height: "1000px",
           }}
         >
-          {userMessages.map((message) => (
+          {messages.map((message) => (
             <MessageItem
               user={message.username}
               text={message.text}

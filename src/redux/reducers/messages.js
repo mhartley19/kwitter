@@ -3,6 +3,7 @@ import {
   INITIATE_SUCCESS,
   INITIATE_FAILURE,
   POST_NEW_MESSAGE,
+  DELETE_OLD_MESSAGE,
 } from "../actions/messageActions";
 
 import { UPDATE_MESSAGE } from "../actions/likeAction";
@@ -11,7 +12,7 @@ const initialState = {
   messages: [],
   loading: false,
   error: "",
-  newMessageValue: [],
+
 };
 
 const messageReducer = (state = initialState, action) => {
@@ -37,7 +38,7 @@ const messageReducer = (state = initialState, action) => {
     case POST_NEW_MESSAGE:
       return {
         ...state,
-        newMessageValue: [action.payload.message],
+       
       };
 
     case UPDATE_MESSAGE:
@@ -49,6 +50,10 @@ const messageReducer = (state = initialState, action) => {
           ),
         ],
       };
+      case DELETE_OLD_MESSAGE:
+        return {
+          ...state,
+        }
 
     default:
       return state;
