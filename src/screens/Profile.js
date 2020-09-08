@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { MenuContainer } from "../components";
 import MessageItem from "../components/messageItem/MessageItem";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchMessages } from "../redux/actions/messageActions";
+import { userMessages } from "../redux/actions/messageActions";
 import { getUserInfo } from "../redux/actions/userProfile";
 
 export function ProfileScreen() {
@@ -12,25 +12,23 @@ export function ProfileScreen() {
 
   const user = useSelector((state) => state.auth);
   const userInfo = useSelector((state) => state.user);
-  const messages = useSelector((state) => state.messageReducer.messages);
+  const messages = useSelector((state) => state.messageReducer.userMessages);
   const dispatch = useDispatch();
-  const userMessages = messages.filter(
-    (message) => message.username === userInfo.username
-  );
 
+  //https://www.geeksforgeeks.org/file-uploading-in-react-js/
   const onFileChange = (event) => {
     picture.selectedFile = event.target.files[0];
     console.log(picture.selectedFile);
   };
 
   useEffect(() => {
-    dispatch(fetchMessages());
-  }, [messages]);
+    dispatch(userMessages(user.username));
+  }, [user]);
 
   useEffect(() => {
     dispatch(getUserInfo(user.username));
   }, []);
-
+  console.log(messages);
   return (
     <>
       <MenuContainer />
@@ -85,7 +83,7 @@ export function ProfileScreen() {
             height: "1000px",
           }}
         >
-          {userMessages.map((message) => (
+          {messages.map((message) => (
             <MessageItem
               user={message.username}
               text={message.text}
