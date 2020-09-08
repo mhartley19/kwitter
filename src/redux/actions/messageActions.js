@@ -7,6 +7,7 @@ export const INITIATE_FAILURE = 'INITIATE FAILURE'
 export const NEW_MESSAGE = 'NEW MESSAGE'
 export const POST_NEW_MESSAGE = 'POST NEW MESSAGE'
 export const DELETE_OLD_MESSAGE = 'DELETE OLD MESSAGE'
+export const GOT_USER_MESSAGES = "GOT USER MESSAGES";
 
 
 export const fetchMessages = () => async (dispatch, getState) => {
@@ -62,4 +63,18 @@ export const deleteMessage = (data) => async(dispatch) => {
         return dispatch (fetchMessages())
     })
 }
+
+
+
+export const userMessages = (user) => async (dispatch) => {
+  try {
+    const payload = await api.getUserMessages(user);
+    dispatch({ type: GOT_USER_MESSAGES, payload });
+  } catch (err) {
+    dispatch({
+      type: INITIATE_FAILURE,
+      payload: "Something went wrong! OH MY GOD!",
+    });
+  }
+};
 

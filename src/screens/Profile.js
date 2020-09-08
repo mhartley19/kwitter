@@ -2,22 +2,36 @@ import React, { useEffect } from "react";
 import { MenuContainer } from "../components";
 import MessageItem from "../components/messageItem/MessageItem";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchMessages } from "../redux/actions/messageActions";
-import { getUserInfo } from "../redux/actions/userProfile";
+import { userMessages } from "../redux/actions/messageActions";
+import { getUserInfo, putUserPicture } from "../redux/actions/userProfile";
 
 export function ProfileScreen() {
+  const picture = {
+    selectedFile: null,
+  };
+
   const user = useSelector((state) => state.auth);
   const userInfo = useSelector((state) => state.user);
   const messages = useSelector((state) => state.messageReducer.userMessages);
- 
   const dispatch = useDispatch();
-  const userMessages = messages.filter(
-    (message) => message.username === userInfo.username
-  );
+
+  const onFileChange = (event) => {
+    picture.selectedFile = event.target.files[0];
+  };
+
+  const onFileUpload = () => {
+    if (picture.selectedFile) {
+      const pictureData = new FormData();
+      pictureData.append("picture", picture.selectedFile);
+      dispatch(putUserPicture(userInfo.username, pictureData));
+    } else {
+      alert("Please select a file.");
+    }
+  };
 
   useEffect(() => {
-    dispatch(fetchMessages());
-  }, [messages]);
+    dispatch(userMessages(user.username));
+  }, [user]);
 
   useEffect(() => {
     dispatch(getUserInfo(user.username));
@@ -52,6 +66,17 @@ export function ProfileScreen() {
             src={`https://kwitter-api.herokuapp.com${userInfo.pictureLocation}`}
             style={{ width: "200px" }}
           />
+          <br />
+          <label>Upload a Picture</label>
+          <br />
+          <input
+            type="file"
+            id="ProfilePicture"
+            name="Add Picture"
+            accept=".gif, .jpeg, .png, .jpg"
+            onChange={onFileChange}
+          />
+          <button onClick={onFileUpload}>Upload!</button>
           <h4>Username: {userInfo.username}</h4>
           <p>bio: </p>
           <p>date joined Kwitter</p>
@@ -64,7 +89,6 @@ export function ProfileScreen() {
             padding: "15px",
             background: "rgb(181, 195, 235)",
             width: "400px",
-            height: "1000px",
           }}
         >
           {messages.map((message) => (

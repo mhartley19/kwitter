@@ -4,12 +4,14 @@ import {
   INITIATE_FAILURE,
   POST_NEW_MESSAGE,
   DELETE_OLD_MESSAGE,
+  GOT_USER_MESSAGES,
 } from "../actions/messageActions";
 
 import { UPDATE_MESSAGE } from "../actions/likeAction";
 
 const initialState = {
   messages: [],
+  userMessages: [],
   loading: false,
   error: "",
 
@@ -54,6 +56,11 @@ const messageReducer = (state = initialState, action) => {
         return {
           ...state,
         }
+    case GOT_USER_MESSAGES:
+      return {
+        ...state,
+        userMessages: [...action.payload.messages],
+      };
 
     default:
       return state;
