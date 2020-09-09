@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import MessageItem from "../messageItem/MessageItem";
 import { Card, ToggleButton, ButtonGroup, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from "react-redux";
 import { userMessages } from "../../redux/actions/messageActions";
 import { getUserInfo, putUserPicture } from "../../redux/actions/userProfile";
