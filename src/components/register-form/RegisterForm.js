@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../redux/actions/auth";
-import { Redirect} from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import { Loader } from "../loader";
 import "./RegisterForm.css";
 
@@ -22,7 +22,12 @@ export const RegisterForm = ({ register }) => {
   const handleRegister = (event) => {
     event.preventDefault();
     dispatch(actions.register(state));
+    
   };
+
+  
+
+ 
 
   const handleChange = (event) => {
     const inputName = event.target.name;
@@ -30,9 +35,8 @@ export const RegisterForm = ({ register }) => {
     setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
   };
 
-//  const handleRedirect = () => {
-//    return <Redirect to='/'/>
-//  }
+
+
   return (
     <React.Fragment>
       <form id="register-form" onSubmit={handleRegister}>
@@ -61,9 +65,10 @@ export const RegisterForm = ({ register }) => {
           required
           onChange={handleChange}
         />
-        <button type="submit"   disabled={loading}>
+        <button type="submit" disabled={loading}>
           Create New User
         </button>
+        
       </form>
       {loading && <Loader />}
       {error && <p style={{ color: "red" }}>{error.message}</p>}
@@ -71,4 +76,3 @@ export const RegisterForm = ({ register }) => {
   );
 };
 
-// onClick={(e) => handleRedirect()}

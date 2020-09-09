@@ -26,7 +26,7 @@ export const fetchMessages = () => async (dispatch, getState) => {
 
 export const _newMessage = (data) => async (dispatch) => {
     try{
-        console.log('message')
+        
         const payload = await api.createNewMessage(data)
         dispatch({type: POST_NEW_MESSAGE, payload})
         .then(dispatch({type: INITIATE_SUCCESS, payload}))
