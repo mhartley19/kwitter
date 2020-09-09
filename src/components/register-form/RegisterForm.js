@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../redux/actions/auth";
+import { Redirect} from "react-router-dom"
 import { Loader } from "../loader";
 import "./RegisterForm.css";
 
@@ -29,10 +30,13 @@ export const RegisterForm = ({ register }) => {
     setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
   };
 
+//  const handleRedirect = () => {
+//    return <Redirect to='/'/>
+//  }
   return (
     <React.Fragment>
       <form id="register-form" onSubmit={handleRegister}>
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username">Choose Username</label>
         <input
           type="text"
           name="username"
@@ -41,7 +45,7 @@ export const RegisterForm = ({ register }) => {
           required
           onChange={handleChange}
         />
-        <label htmlFor="displayName">Display name</label>
+        <label htmlFor="displayName">Choose Display Name</label>
         <input
           type="displayName"
           name="displayName"
@@ -57,8 +61,8 @@ export const RegisterForm = ({ register }) => {
           required
           onChange={handleChange}
         />
-        <button type="submit" disabled={loading}>
-          Login
+        <button type="submit"   disabled={loading}>
+          Create New User
         </button>
       </form>
       {loading && <Loader />}
@@ -66,3 +70,5 @@ export const RegisterForm = ({ register }) => {
     </React.Fragment>
   );
 };
+
+// onClick={(e) => handleRedirect()}

@@ -77,7 +77,9 @@ export function ProfileScreen() {
             onChange={onFileChange}
           />
           <button onClick={onFileUpload}>Upload!</button>
+          <h4>Display Name: {userInfo.displayName}</h4> 
           <h4>Username: {userInfo.username}</h4>
+          {/* HOPEFULLY THIS WONT BREAK EVERYTHING - changed line 80 from UserName to Displayname */}
           <p>bio: </p>
           <p>date joined Kwitter</p>
         </div>

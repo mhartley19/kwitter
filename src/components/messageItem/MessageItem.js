@@ -4,7 +4,7 @@ import { toggleLike } from "../../redux/actions/likeAction";
 import {deleteMessage} from '../../redux/actions/messageActions'
 
 
-function MessageItem({ user, text, id, date, likes }) {
+function MessageItem({ user, text, id, date, likes, displayName }) {
   const dispatch = useDispatch();
 
 

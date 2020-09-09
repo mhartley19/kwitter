@@ -1,12 +1,13 @@
 import React from "react";
 import { LoginFormContainer, MenuContainer, RegisterFormContainer } from "../components";
+import { Link } from "react-router-dom";
 
 export const HomeScreen = () => (
   <>
     <MenuContainer />
-    <h2>Your favorite microblogging platform</h2>
-    <p>Hello World</p>
+    <h1>Your favorite microblogging platform</h1>
+    <h2>Login</h2>
     <LoginFormContainer />
-    <RegisterFormContainer />
+    <Link to="/createNewUser">Create New User</Link>
   </>
 );
