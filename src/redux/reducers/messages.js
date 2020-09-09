@@ -78,6 +78,7 @@ const messageReducer = (state = initialState, action) => {
     case DELETE_OLD_MESSAGE:
       return {
         ...state,
+        messages: [...state.messages.filter(post => post.id !== action.payload.id)]
       }
     case GOT_USER_MESSAGES:
       return {
