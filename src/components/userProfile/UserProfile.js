@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import MessageItem from "../messageItem/MessageItem";
+import { Card, ToggleButton, ButtonGroup, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from "react-redux";
 import { userMessages } from "../../redux/actions/messageActions";
 import { getUserInfo, putUserPicture } from "../../redux/actions/userProfile";
@@ -38,47 +40,70 @@ function UserProfile() {
 
   return (
     <>
-      <h2>{userInfo.username}'s Profile Page</h2>
       <div
-        className="profilePage"
         style={{
           display: "flex",
-          flexDirection: "row",
-          justifyContent: "left",
         }}
       >
-        <div
-          className="profileInfo"
+        <Card
+          text="white"
           style={{
             border: "1px solid black",
             margin: "15px",
-            padding: "15px",
-            background: "rgb(181, 195, 235)",
             width: "300px",
-            height: "500px",
+            height: "600px",
           }}
         >
-          <img
-            alt={userInfo.username}
-            key={userInfo.username}
-            src={`https://kwitter-api.herokuapp.com${userInfo.pictureLocation}`}
-            style={{ width: "200px" }}
-          />
-          <br />
-          <label>Upload a Picture</label>
-          <br />
-          <input
-            type="file"
-            id="ProfilePicture"
-            name="Add Picture"
-            accept=".gif, .jpeg, .png, .jpg"
-            onChange={onFileChange}
-          />
-          <button onClick={onFileUpload}>Upload!</button>
-          <h4>Username: {userInfo.username}</h4>
-          <p>bio: </p>
-          <p>date joined Kwitter</p>
-        </div>
+          <Card.Header
+            style={{
+              backgroundColor: "rgb(0, 31, 126)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Card.Img
+              alt={userInfo.username}
+              key={userInfo.username}
+              src={`https://kwitter-api.herokuapp.com${userInfo.pictureLocation}`}
+              style={{
+                width: "200px",
+                backgroundColor: "rgb(70, 87, 135 )",
+              }}
+            />
+            <br />
+            <Card.Title>{userInfo.displayName}</Card.Title>
+            <Card.Text>(username: {userInfo.username})</Card.Text>
+          </Card.Header>
+          <Card.Body
+            style={{
+              backgroundColor: "rgb(70, 87, 135 )",
+              paddingTop: "2px",
+              paddingLeft: "3px",
+            }}
+          >
+            <input
+              type="file"
+              id="ProfilePicture"
+              name="Add Picture"
+              accept=".gif, .jpeg, .png, .jpg"
+              onChange={onFileChange}
+            />
+            <Button onClick={onFileUpload}>Upload!</Button>
+            <Card.Text>bio: {userInfo.about} </Card.Text>
+          </Card.Body>
+          <Card.Footer
+            style={{
+              backgroundColor: "rgb(0, 31, 126)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Card.Text>Joined Kwitter: {userInfo.createdAt}</Card.Text>
+          </Card.Footer>
+        </Card>
+
         <div
           className="userMessages"
           style={{
