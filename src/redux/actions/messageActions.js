@@ -64,12 +64,11 @@ export const fetchMessages = () => async (dispatch, getState) => {
 
 }
 
-export const _newMessage = (data) => async (dispatch) => {
+export const newMessage = (data) => async (dispatch) => {
     try {
         console.log('message')
         const payload = await api.createNewMessage(data)
-        dispatch({ type: POST_NEW_MESSAGE, payload })
-            .then(dispatch({ type: INITIATE_SUCCESS, payload }))
+
 
     }
     catch (err) {
@@ -77,31 +76,19 @@ export const _newMessage = (data) => async (dispatch) => {
     }
 }
 
-export const newMessage = (data) => async (dispatch) => {
-    return dispatch(_newMessage(data))
-        .then(() => {
-            return dispatch(fetchMessages())
-        })
-}
 
-export const _deleteMessage = (id) => async (dispatch) => {
+export const deleteMessage = (id) => async (dispatch) => {
     try {
-        console.log('delete')
         const payload = await api.deleteOldMessage(id)
-        dispatch({ type: DELETE_OLD_MESSAGE, payload })
-            .then(dispatch({ type: INITIATE_SUCCESS, payload }))
+        dispatch({
+            type: DELETE_OLD_MESSAGE,
+            payload
+        })
 
     }
     catch (err) {
 
     }
-}
-
-export const deleteMessage = (data) => async (dispatch) => {
-    return dispatch(_deleteMessage(data))
-        .then(() => {
-            return dispatch(fetchMessages())
-        })
 }
 
 

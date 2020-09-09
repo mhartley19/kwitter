@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { toggleLike } from "../../redux/actions/likeAction";
-import {deleteMessage} from '../../redux/actions/messageActions'
+import { deleteMessage } from '../../redux/actions/messageActions'
 
 
 function MessageItem({ user, text, id, date, likes }) {
@@ -20,20 +20,20 @@ function MessageItem({ user, text, id, date, likes }) {
       return user[0].id;
     }
   };
- const handleDelete = () =>  {
-  dispatch(deleteMessage(id))
- 
+  const handleDelete = () => {
+    dispatch(deleteMessage(id))
 
- }
+
+  }
   const DeleteButton = () => {
-    return (<button 
+    return (<button
       id={id}
-      className = "deleteMessageButton" 
-     onClick={()=> handleDelete()}>
-       Delete</button>
+      className="deleteMessageButton"
+      onClick={() => handleDelete()}>
+      Delete</button>
 
     )
-} 
+  }
 
   return (
     <div
@@ -57,10 +57,10 @@ function MessageItem({ user, text, id, date, likes }) {
           type="checkbox"
           onChange={() => dispatch(toggleLike(isLiked(), id, getLikeId()))}
         />
-       
-        {username === user ? <DeleteButton/> : null}
-         
-    
+
+        {username === user ? <DeleteButton /> : null}
+
+
       </ul>
     </div>
   );
