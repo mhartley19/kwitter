@@ -3,7 +3,6 @@ import MessageItem from "../components/messageItem/MessageItem";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMessages, newMessage, getRecents } from "../redux/actions/messageActions";
 import { MenuContainer } from "../components";
-import api from "../utils/api";
 import QueuedPosts from "../components/queued-posts/QueuedPosts";
 
 export function MessageFeed() {
@@ -21,7 +20,7 @@ export function MessageFeed() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('rendering feed')
+    console.log("rendering feed");
     dispatch(fetchMessages());
   }, []);
 
@@ -61,9 +60,7 @@ export function MessageFeed() {
           likes={message.likes}
           key={message.id}
         />
-
       ))}
-
     </>
   );
 }
