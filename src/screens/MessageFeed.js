@@ -19,6 +19,7 @@ export function MessageFeed() {
     console.log("rendering feed");
     dispatch(fetchMessages());
   }, []);
+
   return (
     <>
       <MenuContainer />
