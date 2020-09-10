@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from "../../redux/actions/users";
 import { Loader } from "../loader";
-// import "./UdateForm.css";
 
 export const UpdateForm = () => {
   const { loading, error, username } = useSelector((state) => ({
@@ -21,7 +20,7 @@ export const UpdateForm = () => {
 
   const handleUpdate = (event) => {
     event.preventDefault();
-    dispatch(updateUser({ ...state, username }));
+    dispatch(updateUser({ username, ...state }));
   };
 
   const handleChange = (event) => {
