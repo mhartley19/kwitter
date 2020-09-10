@@ -3,13 +3,7 @@ import { useDispatch } from "react-redux";
 import { newMessage } from "../../redux/actions/messageActions";
 
 function InputMessage() {
-  const [newMessageInput, setNewMessageInput] = useState();
-
-  //button dispatch merge queue
-
-  const handleInput = (event) => {
-    setNewMessageInput(event.target.value);
-  };
+  const [newMessageInput, setNewMessageInput] = useState("");
 
   const handleNewMessage = () => {
     dispatch(newMessage(newMessageInput));
@@ -24,7 +18,7 @@ function InputMessage() {
         type="text"
         value={newMessageInput}
         placeholder="Post New Message"
-        onChange={handleInput}
+        onChange={(e) => setNewMessageInput(e.target.value)}
       ></input>
 
       <button onClick={handleNewMessage}>Click Here to Post</button>
