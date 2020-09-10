@@ -14,6 +14,7 @@ const INITIAL_STATE = {
   username: "",
   loading: false,
   error: "",
+  newUserCreated: false
 };
 
 export const authReducer = (state = { ...INITIAL_STATE }, action) => {
@@ -27,6 +28,7 @@ export const authReducer = (state = { ...INITIAL_STATE }, action) => {
       return {
         ...state,
         loading: false,
+        newUserCreated: true
       };
     case REGISTER_FAILURE:
       return {

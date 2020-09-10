@@ -76,9 +76,8 @@ class API {
       let result = await this.axiosInstance.get(
         `/messages?limit=${diff}&offset=0`
       );
-      console.log(diff)
-      result = result.messages.filter(post => post.id > latestLocalPostId)
-      console.log(result)
+      console.log(diff);
+      result = result.messages.filter((post) => post.id > latestLocalPostId);
       return result;
     } catch (err) {
       throw err;
@@ -87,10 +86,7 @@ class API {
 
   async newestPost() {
     try {
-      const result = await this.axiosInstance.get(
-        "/messages?limit=1&offset=0"
-      );
-      console.log(result.messages[0])
+      const result = await this.axiosInstance.get("/messages?limit=1&offset=0");
       return result.messages[0];
     } catch (err) {
       throw err;
@@ -123,11 +119,10 @@ class API {
 
   async deleteOldMessage(id) {
     try {
-      const result = await this.axiosInstance.delete(`/messages/${id}`)
+      const result = await this.axiosInstance.delete(`/messages/${id}`);
 
       return result;
-    }
-    catch (err) {
+    } catch (err) {
       helpMeInstructor(err);
       throw err;
     }
