@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import MessageItem from "../components/messageItem/MessageItem";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMessages, newMessage } from "../redux/actions/messageActions";
+import { fetchMessages } from "../redux/actions/messageActions";
 import { MenuContainer } from "../components";
 import QueuedPosts from "../components/queued-posts/QueuedPosts";
 import InputMessage from "../components/inputMessage/InputMessage";
@@ -12,7 +12,6 @@ export function MessageFeed() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("rendering feed");
     dispatch(fetchMessages());
   }, []);
 
