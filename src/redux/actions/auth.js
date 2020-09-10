@@ -1,9 +1,4 @@
 import api from "../../utils/api";
-import { BrowserRouter} from 'react-router-dom'
-import React from 'react'
-import {ConnectedRoute} from '../../components/connected-route/ConnectedRoute'
-import { Testpage } from '../../screens'
-
 
 // AUTH CONSTANTS
 export const LOGIN = "AUTH/LOGIN";
@@ -22,7 +17,7 @@ export const REGISTER_FAILURE = "AUTH/REGISTER_FAILURE";
 
 // const handleRedirect = () => {
 //  console.log('executed')
-//   return ( 
+//   return (
 //     <>
 //     {console.log('returned')}
 //     <BrowserRouter>
@@ -35,28 +30,21 @@ export const REGISTER_FAILURE = "AUTH/REGISTER_FAILURE";
 //     </BrowserRouter>
 //     </>
 //     )
-
-   
 //  }
 
 const register = (credentials) => async (dispatch, getState) => {
   try {
     dispatch({ type: REGISTER });
-    const payload = await api.register(credentials)
-    dispatch({ type: REGISTER_SUCCESS, payload })
-    
-    
-    
-    
+    const payload = await api.register(credentials);
+    dispatch({ type: REGISTER_SUCCESS, payload });
   } catch (err) {
-    console.log(`Register error ${err}`)
+    console.log(`Register error ${err}`);
     dispatch({
       type: REGISTER_FAILURE,
       payload: err.message,
-    })
+    });
   }
- 
-}
+};
 
 const login = (credentials) => async (dispatch, getState) => {
   try {
@@ -66,7 +54,7 @@ const login = (credentials) => async (dispatch, getState) => {
     // console.log({ result })
     dispatch({ type: LOGIN_SUCCESS, payload });
   } catch (err) {
-    console.log(`Login error ${err.message}`)
+    console.log(`Login error ${err.message}`);
     dispatch({
       type: LOGIN_FAILURE,
       payload: err.message,
