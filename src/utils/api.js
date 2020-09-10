@@ -62,53 +62,127 @@ class API {
       const result = await this.axiosInstance.post("/users", {
         username,
         displayName,
-        password
-      })
+        password,
+      });
       return result;
     } catch (err) {
       helpMeInstructor(err);
-      throw err
+      throw err;
     }
   }
 
-async initiateMessages(){
-  try{
-    const result= await this.axiosInstance.get( "/messages?limit=25&offset=0" )
-    return result
+  async recentPosts(diff, latestLocalPostId) {
+    try {
+      let result = await this.axiosInstance.get(
+        `/messages?limit=${diff}&offset=0`
+      );
+      result = result.messages.filter((post) => post.id > latestLocalPostId);
+      return result;
+    } catch (err) {
+      throw err;
+    }
   }
-  catch(err){
-    helpMeInstructor(err)
-    throw err
+
+  async newestPost() {
+    try {
+      const result = await this.axiosInstance.get("/messages?limit=1&offset=0");
+      return result.messages[0];
+    } catch (err) {
+      throw err;
+    }
   }
-}
 
-async postLike(id){
-    try{
-      await this.axiosInstance.post("/likes", {"messageId": id})    
-      const request = await this.axiosInstance.get(`/messages/${id}`)
-    return request
+  async initiateMessages() {
+    try {
+      const result = await this.axiosInstance.get(
+        "/messages?limit=25&offset=0"
+      );
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
   }
-  catch(err){
-    helpMeInstructor(err)
-    throw err
+
+  async createNewMessage(message) {
+    try {
+      const result = await this.axiosInstance.post("/messages", {
+        text: message,
+      });
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
   }
-}
 
-async deleteLike(likeId, id){
-  try{
-      await this.axiosInstance.delete(`/likes/${likeId}`)
-      const request = await this.axiosInstance.get(`/messages/${id}`)     
-    return request
+  async deleteOldMessage(id) {
+    try {
+      const result = await this.axiosInstance.delete(`/messages/${id}`);
+
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
   }
-  catch(err){
-    helpMeInstructor(err)
-    throw err
+
+  async postLike(id) {
+    try {
+      await this.axiosInstance.post("/likes", { messageId: id });
+      const request = await this.axiosInstance.get(`/messages/${id}`);
+      return request;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
   }
-}
 
+  async deleteLike(likeId, id) {
+    try {
+      await this.axiosInstance.delete(`/likes/${likeId}`);
+      const request = await this.axiosInstance.get(`/messages/${id}`);
+      return request;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
 
+  async getUser(username) {
+    try {
+      const result = await this.axiosInstance.get(`/users/${username}`);
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
 
+  async getUserMessages(user) {
+    try {
+      const result = await this.axiosInstance.get(
+        `/messages?limit=100&offset=0&username=${user}`
+      );
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
 
+  async putPicture(username, file) {
+    try {
+      const result = await this.axiosInstance.put(
+        `/users/${username}/picture`,
+        file
+      );
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
 }
 
 // WARNING.. do not touch below this line if you want to have a good day =]

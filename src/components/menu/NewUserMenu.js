@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../redux/actions/auth";
 import "./Menu.css";
 
-export const Menu = () => {
+export const NewUserMenu = () => {
   const isAuthenticated = useSelector((state) => !!state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const logout = () => dispatch(actions.logout());
@@ -20,7 +20,7 @@ export const Menu = () => {
               Logout
             </Link>
           </>
-        ) : null}
+        ) : <Link to="/" onClick={logout}>Login Home</Link>}
       </div>
     </div>
   );

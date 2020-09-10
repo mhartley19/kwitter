@@ -48,6 +48,7 @@ export function ConnectedRoute({
       />
     );
   }
+ 
 
   return (
     <Route
@@ -62,7 +63,10 @@ export function ConnectedRoute({
       )}
     />
   );
+
+  
 }
+
 
 ConnectedRoute.defaultProps = {
   isProtected: null,

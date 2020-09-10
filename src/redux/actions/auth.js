@@ -15,19 +15,36 @@ export const REGISTER_FAILURE = "AUTH/REGISTER_FAILURE";
  If you need access to your store you may call getState()
 */
 
+// const handleRedirect = () => {
+//  console.log('executed')
+//   return (
+//     <>
+//     {console.log('returned')}
+//     <BrowserRouter>
+//     <ConnectedRoute
+//         // exact
+//         // isProtected
+//         path="/testpage"
+//         component={Testpage}
+//       />
+//     </BrowserRouter>
+//     </>
+//     )
+//  }
+
 const register = (credentials) => async (dispatch, getState) => {
   try {
     dispatch({ type: REGISTER });
     const payload = await api.register(credentials);
     dispatch({ type: REGISTER_SUCCESS, payload });
   } catch (err) {
-    console.log(`Register error ${err}`)
+    console.log(`Register error ${err}`);
     dispatch({
       type: REGISTER_FAILURE,
       payload: err.message,
-    })
+    });
   }
-}
+};
 
 const login = (credentials) => async (dispatch, getState) => {
   try {
@@ -37,7 +54,7 @@ const login = (credentials) => async (dispatch, getState) => {
     // console.log({ result })
     dispatch({ type: LOGIN_SUCCESS, payload });
   } catch (err) {
-    console.log(`Login error ${err.message}`)
+    console.log(`Login error ${err.message}`);
     dispatch({
       type: LOGIN_FAILURE,
       payload: err.message,
