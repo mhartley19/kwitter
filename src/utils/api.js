@@ -184,6 +184,20 @@ class API {
       throw err;
     }
   }
+
+  async updateUser({ username, password, displayName, about }) {
+    try {
+      const result = await this.axiosInstance.patch(`/users/${username}`, {
+        password,
+        displayName,
+        about,
+      });
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
 }
 
 // WARNING.. do not touch below this line if you want to have a good day =]
