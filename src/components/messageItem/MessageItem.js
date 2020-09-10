@@ -6,7 +6,7 @@ import { toggleLike } from "../../redux/actions/likeAction";
 import { deleteMessage } from "../../redux/actions/messageActions";
 import defaultPhoto from "../default_photo.jpg";
 
-function MessageItem({ user, text, id, date, likes }) {
+function MessageItem({ user, text, id, date, likes, displayName }) {
   const dispatch = useDispatch();
 
   const username = useSelector((state) => state.auth.username);

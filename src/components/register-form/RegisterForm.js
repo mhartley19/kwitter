@@ -3,11 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
 import "./RegisterForm.css";
+import { CreateSuccessMessage, CreateUserError } from '../login-form/Success_Error'
+
+
 
 export const RegisterForm = ({ register }) => {
-  const { loading, error } = useSelector((state) => ({
+  const { loading, error, auth } = useSelector((state) => ({
     loading: state.auth.loading,
     error: state.auth.error,
+    auth: state.auth.newUserCreated
   }));
 
   const dispatch = useDispatch();
@@ -21,6 +25,7 @@ export const RegisterForm = ({ register }) => {
   const handleRegister = (event) => {
     event.preventDefault();
     dispatch(actions.register(state));
+    
   };
 
   const handleChange = (event) => {
@@ -29,6 +34,7 @@ export const RegisterForm = ({ register }) => {
     setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
   };
 
+ 
   return (
     <React.Fragment>
       <form id="register-form" onSubmit={handleRegister}>
@@ -57,11 +63,13 @@ export const RegisterForm = ({ register }) => {
           required
           onChange={handleChange}
         />
-        <button type="submit" disabled={loading}>
+        <button type="submit" disabled={loading} >
           Login
         </button>
       </form>
-      {loading && <Loader />}
+      {loading && <Loader /> }
+      {auth && <CreateSuccessMessage/>}
+      {error && <CreateUserError/>}
       {error && <p style={{ color: "red" }}>{error.message}</p>}
     </React.Fragment>
   );

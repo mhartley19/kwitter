@@ -50,6 +50,10 @@ export const getRecents = (newestLocalId) => async (dispatch) => {
 }
 
 
+  
+
+  
+
 export const fetchMessages = () => async (dispatch, getState) => {
     try {
         dispatch({ type: LOADING_MESSAGES });

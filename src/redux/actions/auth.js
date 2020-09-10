@@ -1,4 +1,9 @@
 import api from "../../utils/api";
+import { BrowserRouter} from 'react-router-dom'
+import React from 'react'
+import {ConnectedRoute} from '../../components/connected-route/ConnectedRoute'
+import { Testpage } from '../../screens'
+
 
 // AUTH CONSTANTS
 export const LOGIN = "AUTH/LOGIN";
@@ -15,11 +20,34 @@ export const REGISTER_FAILURE = "AUTH/REGISTER_FAILURE";
  If you need access to your store you may call getState()
 */
 
+// const handleRedirect = () => {
+//  console.log('executed')
+//   return ( 
+//     <>
+//     {console.log('returned')}
+//     <BrowserRouter>
+//     <ConnectedRoute
+//         // exact
+//         // isProtected
+//         path="/testpage"
+//         component={Testpage}
+//       />
+//     </BrowserRouter>
+//     </>
+//     )
+
+   
+//  }
+
 const register = (credentials) => async (dispatch, getState) => {
   try {
     dispatch({ type: REGISTER });
-    const payload = await api.register(credentials);
-    dispatch({ type: REGISTER_SUCCESS, payload });
+    const payload = await api.register(credentials)
+    dispatch({ type: REGISTER_SUCCESS, payload })
+    
+    
+    
+    
   } catch (err) {
     console.log(`Register error ${err}`)
     dispatch({
@@ -27,6 +55,7 @@ const register = (credentials) => async (dispatch, getState) => {
       payload: err.message,
     })
   }
+ 
 }
 
 const login = (credentials) => async (dispatch, getState) => {
