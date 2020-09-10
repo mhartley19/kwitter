@@ -1,35 +1,48 @@
-import{
-    UPDATE_USER, UPDATE_SUCCESS, UPDATE_FAILURE
-} from "../actions"
 
-const INITIAL_STATE = {
-    username: "",
-    displayName: "",
-    about: "",
-    loading: false,
-    error: "",
-  };
-  
-  export const userReducer = (state = { ...INITIAL_STATE }, action) => {
-    switch (action.type) {
-      case UPDATE_USER:
-        return {
-          ...INITIAL_STATE,
-          loading: true
-        };
-      case UPDATE_SUCCESS:
-        return {
-          ...state,
-          loading: false
-        };
-      case UPDATE_FAILURE:
-        return {
-          ...INITIAL_STATE,
-          loading: false,
-          error: "bad"
-        }
-      default: return state
-    };
-    
-  }
 // TODO: implement
+import { GET_USER_INFO, PUT_PICTURE } from "../actions/userProfile";
+
+const initialState = {
+  pictureLocation: "",
+  username: "",
+  displayName: "",
+  about: "",
+  googleId: "",
+  createdAt: "",
+  updatedAt: "",
+  profilePicture: {},
+};
+
+const getUserReducer = (state = { ...initialState }, action) => {
+  switch (action.type) {
+    case GET_USER_INFO:
+      const {
+        pictureLocation,
+        username,
+        displayName,
+        about,
+        googleId,
+        createdAt,
+        updatedAt,
+      } = action.payload.user;
+      return {
+        ...state,
+        pictureLocation,
+        username,
+        displayName,
+        about,
+        googleId,
+        createdAt,
+        updatedAt,
+      };
+    case PUT_PICTURE:
+      return {
+        ...state,
+        profilePicture: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export default getUserReducer;

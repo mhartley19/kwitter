@@ -1,26 +1,27 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { actions } from "../../redux/actions/users";
+import { updateUser } from "../../redux/actions/users";
 import { Loader } from "../loader";
-import "./UdateForm.css";
+// import "./UdateForm.css";
 
-export const UdateForm = ({ login }) => {
-  const { loading, error } = useSelector((state) => ({
+export const UpdateForm = ({ login }) => {
+  const { loading, error, username } = useSelector((state) => ({
+      username: state.auth.username,
     loading: state.auth.loading,
     error: state.auth.error,
   }));
-
+  
   const dispatch = useDispatch();
 
   const [state, setState] = useState({
-    username: "",
+    // password: "",
     displayName: "",
     about: "",
   });
 
   const handleLogin = (event) => {
     event.preventDefault();
-    dispatch(actions.login(state));
+    dispatch(updateUser({...state, username}));
   };
 
   const handleChange = (event) => {
@@ -28,29 +29,33 @@ export const UdateForm = ({ login }) => {
     const inputValue = event.target.value;
     setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
   };
-
-  return (
+  return ( 
     <React.Fragment>
       <form id="login-form" onSubmit={handleLogin}>
-        <label htmlFor="username">Username</label>
+      {/* <label htmlFor="password">Change Password</label>
         <input
           type="text"
-          name="username"
-          value={state.username}
+          name="password"
+          value={state.password}
           autoFocus
-          required
+          onChange={handleChange}
+        />  */}
+        <label htmlFor="about">Change About</label>
+        <input
+          type="text"
+          name="about"
+          value={state.about}
           onChange={handleChange}
         />
-        <label htmlFor="displayName">Display name</label>
+        <label htmlFor="displayName">Change Display name</label>
         <input
-          type="displayName"
+          type="text"
           name="displayName"
           value={state.displayName}
-          required
           onChange={handleChange}
         />
         <button type="submit" disabled={loading}>
-          Login
+          updateUser
         </button>
       </form>
       {loading && <Loader />}

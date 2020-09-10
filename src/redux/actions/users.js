@@ -6,7 +6,8 @@ export const UPDATE_FAILURE = "UPDATE_FAILURE"
 export const updateUser = (changes) => async (dispatch, getState) => {
     try {
         dispatch({type: UPDATE_USER})
-        const payload = await api.updateUser(changes)
+        console.log(changes)
+        const payload = await api.updateUser(getState().auth.user.username, changes)
         dispatch({type: UPDATE_SUCCESS, payload})
     }catch (err){
         dispatch({type: UPDATE_FAILURE, err})
