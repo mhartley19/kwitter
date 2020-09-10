@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, ToggleButton, ButtonGroup, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,6 +14,8 @@ function MessageItem({ user, text, id, date, likes, displayName }) {
   const isLiked = () => {
     return likes.some((like) => like.username === username);
   };
+
+
 
   const getLikeId = () => {
     if (isLiked()) {
