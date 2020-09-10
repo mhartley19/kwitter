@@ -83,7 +83,6 @@ export function ProfileScreen() {
           <p>displayName: { userInfo.displayName } </p>
           <p>date joined Kwitter</p>
           {user.username === userInfo.username && <UpdateForm></UpdateForm>}
-          {/* <a href=`/editprofile/${userInfo.username}` >edit profile</a> */}
         </div>
         <div
           className="userMessages"

@@ -14,7 +14,7 @@ export const UpdateForm = ({ login }) => {
   const dispatch = useDispatch();
 
   const [state, setState] = useState({
-    // password: "",
+    password: "",
     displayName: "",
     about: "",
   });
@@ -32,14 +32,14 @@ export const UpdateForm = ({ login }) => {
   return ( 
     <React.Fragment>
       <form id="login-form" onSubmit={handleLogin}>
-      {/* <label htmlFor="password">Change Password</label>
+      <label htmlFor="password">Change Password</label>
         <input
           type="text"
           name="password"
           value={state.password}
           autoFocus
           onChange={handleChange}
-        />  */}
+        /> 
         <label htmlFor="about">Change About</label>
         <input
           type="text"
