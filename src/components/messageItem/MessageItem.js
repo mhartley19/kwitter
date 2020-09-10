@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import fetch from "node-fetch";
 import { Card, ToggleButton, ButtonGroup, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,16 +7,14 @@ import { toggleLike } from "../../redux/actions/likeAction";
 import { deleteMessage } from "../../redux/actions/messageActions";
 import defaultPhoto from "../default_photo.jpg";
 
-function MessageItem({ user, text, id, date, likes, displayName }) {
+function MessageItem({ user, text, id, date, likes }) {
+  const [currentPhoto, setPhoto] = useState(false);
   const dispatch = useDispatch();
-
   const username = useSelector((state) => state.auth.username);
 
   const isLiked = () => {
     return likes.some((like) => like.username === username);
   };
-
-
 
   const getLikeId = () => {
     if (isLiked()) {
@@ -23,6 +22,7 @@ function MessageItem({ user, text, id, date, likes, displayName }) {
       return user[0].id;
     }
   };
+
   const handleDelete = () => {
     dispatch(deleteMessage(id));
   };
@@ -38,6 +38,22 @@ function MessageItem({ user, text, id, date, likes, displayName }) {
         Delete
       </Button>
     );
+  };
+
+  useEffect(() => {
+    fetchPhoto();
+  }, []);
+
+  const fetchPhoto = () => {
+    fetch(`https://kwitter-api.herokuapp.com/users/${user}`)
+      .then((response) => response.json())
+      .then(function (data) {
+        if (data.user.pictureLocation !== null) {
+          setPhoto(`https://kwitter-api.herokuapp.com/users/${user}/picture`);
+        } else {
+          setPhoto(defaultPhoto);
+        }
+      });
   };
 
   return (
@@ -68,10 +84,12 @@ function MessageItem({ user, text, id, date, likes, displayName }) {
             }}
           >
             {" "}
-            <Card.Img
-              src={`https://kwitter-api.herokuapp.com/users/${user}/picture`}
-              style={{ width: "50px", borderRadius: "50%" }}
-            />
+            {currentPhoto && (
+              <Card.Img
+                src={currentPhoto}
+                style={{ width: "50px", borderRadius: "50%" }}
+              />
+            )}
             {"    "}
             {user}
           </Card.Title>

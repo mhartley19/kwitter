@@ -1,5 +1,5 @@
 import React from "react";
-import { LoginFormContainer, MenuContainer, RegisterFormContainer } from "../components";
+import { LoginFormContainer, MenuContainer } from "../components";
 import { Link } from "react-router-dom";
 
 export const HomeScreen = () => (
