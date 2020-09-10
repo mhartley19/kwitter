@@ -10,6 +10,10 @@ export const DELETE_OLD_MESSAGE = 'DELETE OLD MESSAGE'
 export const GOT_USER_MESSAGES = "GOT USER MESSAGES";
 
 
+  
+
+  
+
 export const fetchMessages = () => async (dispatch, getState) => {
     try {
         dispatch({ type: LOADING_MESSAGES });
