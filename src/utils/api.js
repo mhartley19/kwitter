@@ -1,4 +1,5 @@
 import axios from "axios";
+import thunk from "redux-thunk";
 
 class API {
   axiosInstance = null;
@@ -177,6 +178,20 @@ class API {
         `/users/${username}/picture`,
         file
       );
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async updateUser({ username, password, displayName, about }) {
+    try {
+      const result = await this.axiosInstance.patch(`/users/${username}`, {
+        password,
+        displayName,
+        about,
+      });
       return result;
     } catch (err) {
       helpMeInstructor(err);
