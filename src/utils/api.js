@@ -72,6 +72,27 @@ class API {
     }
   }
 
+  async recentPosts(diff, latestLocalPostId) {
+    try {
+      let result = await this.axiosInstance.get(
+        `/messages?limit=${diff}&offset=0`
+      );
+      result = result.messages.filter((post) => post.id > latestLocalPostId);
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async newestPost() {
+    try {
+      const result = await this.axiosInstance.get("/messages?limit=1&offset=0");
+      return result.messages[0];
+    } catch (err) {
+      throw err;
+    }
+  }
+
   async initiateMessages() {
     try {
       const result = await this.axiosInstance.get(
@@ -89,6 +110,17 @@ class API {
       const result = await this.axiosInstance.post("/messages", {
         text: message,
       });
+      return result;
+    } catch (err) {
+      helpMeInstructor(err);
+      throw err;
+    }
+  }
+
+  async deleteOldMessage(id) {
+    try {
+      const result = await this.axiosInstance.delete(`/messages/${id}`);
+
       return result;
     } catch (err) {
       helpMeInstructor(err);
@@ -117,20 +149,6 @@ class API {
       throw err;
     }
   }
-
-async updateUser({username, password, displayName, about}) {
-  try {
-    const result = await this.axiosInstance.patch(`/users/${username}`, {
-      password,
-      displayName,
-      about,
-    })
-    return result
-  }catch(err){
-    helpMeInstructor(err)
-    throw err
-  }
-}
 
   async getUser(username) {
     try {

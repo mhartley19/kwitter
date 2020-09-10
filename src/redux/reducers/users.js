@@ -1,5 +1,3 @@
-
-// TODO: implement
 import { GET_USER_INFO, PUT_PICTURE } from "../actions/userProfile";
 
 const initialState = {
