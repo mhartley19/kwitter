@@ -76,7 +76,6 @@ class API {
       let result = await this.axiosInstance.get(
         `/messages?limit=${diff}&offset=0`
       );
-      console.log(diff);
       result = result.messages.filter((post) => post.id > latestLocalPostId);
       return result;
     } catch (err) {
