@@ -1,4 +1,5 @@
 import axios from "axios";
+import thunk from "redux-thunk";
 
 class API {
   axiosInstance = null;
