@@ -12,6 +12,7 @@ export function MessageFeed() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("rendering feed");
     dispatch(fetchMessages());
   }, []);
 
