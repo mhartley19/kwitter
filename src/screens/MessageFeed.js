@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMessages, newMessage } from "../redux/actions/messageActions";
 import { MenuContainer } from "../components";
 import QueuedPosts from "../components/queued-posts/QueuedPosts";
-import InputMessage from "../components/inputMessage/InputMessge";
+import InputMessage from "../components/inputMessage/InputMessage";
 
 export function MessageFeed() {
   const messages = useSelector((state) => state.messageReducer.messages);
