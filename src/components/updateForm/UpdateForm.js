@@ -4,13 +4,13 @@ import { updateUser } from "../../redux/actions/users";
 import { Loader } from "../loader";
 // import "./UdateForm.css";
 
-export const UpdateForm = ({ login }) => {
+export const UpdateForm = () => {
   const { loading, error, username } = useSelector((state) => ({
-      username: state.auth.username,
+    username: state.auth.username,
     loading: state.auth.loading,
     error: state.auth.error,
   }));
-  
+
   const dispatch = useDispatch();
 
   const [state, setState] = useState({
@@ -19,9 +19,9 @@ export const UpdateForm = ({ login }) => {
     about: "",
   });
 
-  const handleLogin = (event) => {
+  const handleUpdate = (event) => {
     event.preventDefault();
-    dispatch(updateUser({...state, username}));
+    dispatch(updateUser({ ...state, username }));
   };
 
   const handleChange = (event) => {
@@ -29,17 +29,17 @@ export const UpdateForm = ({ login }) => {
     const inputValue = event.target.value;
     setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
   };
-  return ( 
+  return (
     <React.Fragment>
-      <form id="login-form" onSubmit={handleLogin}>
-      <label htmlFor="password">Change Password</label>
+      <form id="login-form" onSubmit={handleUpdate}>
+        <label htmlFor="password">Change Password</label>
         <input
           type="text"
           name="password"
           value={state.password}
           autoFocus
           onChange={handleChange}
-        /> 
+        />
         <label htmlFor="about">Change About</label>
         <input
           type="text"
@@ -55,7 +55,7 @@ export const UpdateForm = ({ login }) => {
           onChange={handleChange}
         />
         <button type="submit" disabled={loading}>
-          updateUser
+          Update User
         </button>
       </form>
       {loading && <Loader />}

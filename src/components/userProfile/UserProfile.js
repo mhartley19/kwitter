@@ -4,6 +4,7 @@ import { Card, ToggleButton, ButtonGroup, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { userMessages } from "../../redux/actions/messageActions";
 import { getUserInfo, putUserPicture } from "../../redux/actions/userProfile";
+import { UpdateForm } from "../updateForm/UpdateForm";
 
 function UserProfile() {
   const picture = {
@@ -50,7 +51,7 @@ function UserProfile() {
             border: "1px solid black",
             margin: "15px",
             width: "300px",
-            height: "600px",
+            height: "800px",
           }}
         >
           <Card.Header
@@ -90,6 +91,7 @@ function UserProfile() {
             />
             <Button onClick={onFileUpload}>Upload!</Button>
             <Card.Text>bio: {userInfo.about} </Card.Text>
+            {user.username === userInfo.username && <UpdateForm />}
           </Card.Body>
           <Card.Footer
             style={{
