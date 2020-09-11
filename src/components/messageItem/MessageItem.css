@@ -1,0 +1,42 @@
+.card-header {
+  background-color: #7289da;
+}
+
+.card-body {
+  background-color: rgb(32, 32, 32);
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #7289da;
+  align-items: center;
+}
+
+.card {
+  border: 1px solid rgb(0, 0, 0);
+  box-shadow: 5px 6px 7px 0px rgba(70, 69, 69, 0.794);
+  background-color: #23272a;
+}
+
+label.likeBox.btn.btn-primary {
+  height: 30px;
+  width: 30px;
+  padding: 0px;
+  background-image: url("../heartCutOut.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #7289da;
+  border: none;
+}
+
+label.likeBox.btn.active.btn-primary {
+  height: 30px;
+  width: 30px;
+  padding: 0px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #7289da;
+  border: none;
+  background-image: url("../heartRed.png");
+}
