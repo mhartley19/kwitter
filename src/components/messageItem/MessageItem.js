@@ -155,11 +155,16 @@ function MessageItem({ user, text, id, date, likes }) {
                 onChange={() =>
                   dispatch(toggleLike(isLiked(), id, getLikeId()))
                 }
-              >
-                {/* {isLiked() ? "unlike" : "like"} */}
-              </ToggleButton>
+              ></ToggleButton>
             </ButtonGroup>{" "}
-            {likes.length} likes
+            {likes.length} like
+            {/* <div className="dropdown">
+              {" "}
+              <p>{likes.length} likes</p>{" "}
+              <div class="dropdown-content">
+                <p>Hello World!</p>
+              </div>
+            </div> */}
           </div>
           Date Created: {postDate} {username === user ? <DeleteButton /> : null}
         </Card.Footer>
