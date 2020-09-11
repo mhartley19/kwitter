@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userMessages } from "../../redux/actions/messageActions";
 import { getUserInfo, putUserPicture } from "../../redux/actions/userProfile";
 import { UpdateForm } from "../updateForm/UpdateForm";
+import "./UserProfile.css";
 
 function UserProfile() {
   const picture = {
@@ -30,6 +31,15 @@ function UserProfile() {
     }
   };
 
+  let newDate = new Date(userInfo.createdAt);
+  let joinDate =
+    newDate.getMonth() +
+    1 +
+    "-" +
+    newDate.getDate() +
+    "-" +
+    newDate.getFullYear();
+
   useEffect(() => {
     dispatch(userMessages(user.username));
   }, [user]);
@@ -47,29 +57,20 @@ function UserProfile() {
       >
         <Card
           text="white"
+          className="profile"
           style={{
             border: "1px solid black",
             margin: "15px",
             width: "300px",
-            height: "800px",
+            height: "fit-content",
           }}
         >
-          <Card.Header
-            style={{
-              backgroundColor: "rgb(0, 31, 126)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
+          <Card.Header style={{ width: "300px" }}>
             <Card.Img
+              className="profilePicture"
               alt={userInfo.username}
               key={userInfo.username}
               src={`https://kwitter-api.herokuapp.com${userInfo.pictureLocation}`}
-              style={{
-                width: "200px",
-                backgroundColor: "rgb(70, 87, 135 )",
-              }}
             />
             <br />
             <Card.Title>{userInfo.displayName}</Card.Title>
@@ -77,14 +78,20 @@ function UserProfile() {
           </Card.Header>
           <Card.Body
             style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
               backgroundColor: "rgb(70, 87, 135 )",
               paddingTop: "2px",
               paddingLeft: "3px",
+              width: "300px",
+              height: "fit-content",
             }}
           >
             <input
               type="file"
               id="ProfilePicture"
+              class="customFileIinput"
               name="Add Picture"
               accept=".gif, .jpeg, .png, .jpg"
               onChange={onFileChange}
@@ -95,13 +102,14 @@ function UserProfile() {
           </Card.Body>
           <Card.Footer
             style={{
-              backgroundColor: "rgb(0, 31, 126)",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              height: "fit-content",
+              fontSize: "small",
             }}
           >
-            <Card.Text>Joined Kwitter: {userInfo.createdAt}</Card.Text>
+            <Card.Text>Joined Kwitter: {joinDate}</Card.Text>
           </Card.Footer>
         </Card>
 
