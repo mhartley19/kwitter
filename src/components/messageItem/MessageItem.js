@@ -9,6 +9,9 @@ import defaultPhoto from "../default_photo.jpg";
 
 function MessageItem({ user, text, id, date, likes }) {
   const [currentPhoto, setPhoto] = useState(false);
+  const [displayName, setDisplayname] = useState(false);
+  const [about, setAbout] = useState(false);
+
   const dispatch = useDispatch();
   const username = useSelector((state) => state.auth.username);
 
@@ -41,13 +44,15 @@ function MessageItem({ user, text, id, date, likes }) {
   };
 
   useEffect(() => {
-    fetchPhoto();
+    fetchUserInfo();
   }, []);
 
-  const fetchPhoto = () => {
+  const fetchUserInfo = () => {
     fetch(`https://kwitter-api.herokuapp.com/users/${user}`)
       .then((response) => response.json())
       .then(function (data) {
+        setDisplayname(data.user.displayName);
+        setAbout(data.user.about);
         if (data.user.pictureLocation !== null) {
           setPhoto(`https://kwitter-api.herokuapp.com/users/${user}/picture`);
         } else {
@@ -91,7 +96,7 @@ function MessageItem({ user, text, id, date, likes }) {
               />
             )}
             {"    "}
-            {user}
+            {displayName && `Display: ${displayName}`} User: {user}
           </Card.Title>
         </Card.Header>
         <Card.Body
@@ -127,6 +132,7 @@ function MessageItem({ user, text, id, date, likes }) {
             </ToggleButton>
           </ButtonGroup>{" "}
           {likes.length} likes <br />
+          {about && <p>{about}</p>}
           Date Created {date} {username === user ? <DeleteButton /> : null}
         </Card.Footer>
       </Card>
