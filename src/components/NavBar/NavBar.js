@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './NavBar.css'
 import { useDispatch } from "react-redux"
 import { actions } from "../../redux/actions/auth";
 import { Nav, Navbar, Form, } from "react-bootstrap"
@@ -9,15 +9,17 @@ export const NavBar = () => {
     const logout = () => dispatch(actions.logout());
     return(
         
-        <Navbar bg="primary" variant="dark">
+        <Navbar class='navbar' bbg="dark" variant="dark">
       
         <Nav className="mr-auto">
-          <Nav.Link href="/profiles/:username">Profile</Nav.Link>
-          <Nav.Link href="/messagefeed" >Message Feed</Nav.Link>
-          <Nav.Link onClick={logout}>Logout</Nav.Link>
-          <Navbar.Collapse className="justify-content-end">
+          <div id>
+          <Nav.Link class='link' href="/profiles/:username">Profile</Nav.Link>
+          <Nav.Link class='link' href="/messagefeed" >Message Feed</Nav.Link>
+          <Nav.Link class='link' onClick={logout}>Logout</Nav.Link>
+          </div>
+          {/* <Navbar.Collapse className="justify-content-end"> */}
               
-              </Navbar.Collapse>
+              {/* </Navbar.Collapse> */}
           
         </Nav>
         

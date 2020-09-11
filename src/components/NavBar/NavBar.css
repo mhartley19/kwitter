@@ -1,10 +1,19 @@
-.navbar{
+#link-container{
+    display:flex;
     justify-content: flex-end;
-}
-.justify-content-end{
-    justify-content: flex-end;
+    width: 1860px;
 }
 
-.home-header{
-    text-align: center;
+.navbar{
+    background-color: #7289DA;
+    display: flex;
+    flex-direction: row-reverse;
+   
 }
+.mr-auto .navbar-nav{
+    display: flex;
+    
+    flex-direction: row-reverse;
+    align-content: flex-end;
+}
+
