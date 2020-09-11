@@ -31,34 +31,40 @@ export function MessageFeed() {
 
   return (
     <>
+
+      <a name="top"></a>
       <MenuContainer />
+      <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "auto", position: "fixed", zIndex: "2" }}>
+        <QueuedPosts />
+      </div>
       <InputMessage />
 
-      {messages.length > 0 && queue && <QueuedPosts lastId={messages[0].id} />}
 
-      {isInitialized && (
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={handleLoadMore}
-          hasMore={true || false}
-          loader={
-            <div className="loader" key={0}>
-              Loading ...
+      {
+        isInitialized && (
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={handleLoadMore}
+            hasMore={true || false}
+            loader={
+              <div className="loader" key={0}>
+                Loading ...
             </div>
-          }
-        >
-          {messages.map((message) => (
-            <MessageItem
-              user={message.username}
-              text={message.text}
-              id={message.id}
-              date={message.createdAt}
-              likes={message.likes}
-              key={message.id}
-            />
-          ))}
-        </InfiniteScroll>
-      )}
+            }
+          >
+            {messages.map((message) => (
+              <MessageItem
+                user={message.username}
+                text={message.text}
+                id={message.id}
+                date={message.createdAt}
+                likes={message.likes}
+                key={message.id}
+              />
+            ))}
+          </InfiniteScroll>
+        )
+      }
     </>
   );
 }

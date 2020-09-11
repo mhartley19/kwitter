@@ -8,3 +8,11 @@
 .home-header {
   text-align: center;
 }
+
+#theDiv {
+  display: flex;
+}
+
+
+
+
