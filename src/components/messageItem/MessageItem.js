@@ -86,13 +86,6 @@ function MessageItem({ user, text, id, date, likes }) {
             height: "65px",
           }}
         >
-          {/* <Card.Body
-            style={{
-              backgroundImage: `"${currentPhoto}"`,
-              height: "50px",
-              width: "50px",
-            }}
-          ></Card.Body> */}
           {currentPhoto && (
             <>
               <Card.Img
