@@ -81,23 +81,50 @@ function MessageItem({ user, text, id, date, likes }) {
           style={{
             backgroundColor: "rgb(0, 31, 126)",
             padding: "5px",
+            display: "flex",
+            alignItems: "start",
+            height: "65px",
           }}
         >
-          <Card.Title
+          {/* <Card.Body
             style={{
-              margin: "1px",
+              backgroundImage: `"${currentPhoto}"`,
+              height: "50px",
+              width: "50px",
             }}
-          >
-            {" "}
-            {currentPhoto && (
+          ></Card.Body> */}
+          {currentPhoto && (
+            <>
               <Card.Img
                 src={currentPhoto}
-                style={{ width: "50px", borderRadius: "50%" }}
+                style={{
+                  width: "50px",
+                  borderRadius: "50%",
+                  height: "100%",
+                  backgroundImage: { currentPhoto },
+                }}
+                title={about && `About ${displayName}: ${about}`}
               />
-            )}
-            {"    "}
-            {displayName && `Display: ${displayName}`} User: {user}
-          </Card.Title>
+            </>
+          )}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              paddingLeft: "5px",
+            }}
+          >
+            <Card.Title
+              style={{
+                margin: "1px",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {displayName && displayName}
+            </Card.Title>{" "}
+            <Card.Text style={{ paddingLeft: "0px" }}>@{user}</Card.Text>
+          </div>
         </Card.Header>
         <Card.Body
           style={{
@@ -132,7 +159,6 @@ function MessageItem({ user, text, id, date, likes }) {
             </ToggleButton>
           </ButtonGroup>{" "}
           {likes.length} likes <br />
-          {about && <p>{about}</p>}
           Date Created {date} {username === user ? <DeleteButton /> : null}
         </Card.Footer>
       </Card>
