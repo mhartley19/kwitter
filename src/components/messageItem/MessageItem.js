@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleLike } from "../../redux/actions/likeAction";
 import { deleteMessage } from "../../redux/actions/messageActions";
 import defaultPhoto from "../default_photo.jpg";
+import "./MessageItem.css";
 
 function MessageItem({ user, text, id, date, likes }) {
   const [currentPhoto, setPhoto] = useState(false);
@@ -61,25 +62,30 @@ function MessageItem({ user, text, id, date, likes }) {
       });
   };
 
+  let newDate = new Date(date);
+  let postDate =
+    newDate.getMonth() +
+    1 +
+    "-" +
+    newDate.getDate() +
+    "-" +
+    newDate.getFullYear();
+
   return (
     <>
       <Card
         text="white"
-        border="success"
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "left",
           alignItems: "left",
-          border: "1px solid black",
-          backgroundColor: "rgb(220, 223, 232 )",
           margin: "15px",
           width: "500px",
         }}
       >
         <Card.Header
           style={{
-            backgroundColor: "rgb(0, 31, 126)",
             padding: "5px",
             display: "flex",
             alignItems: "start",
@@ -121,7 +127,6 @@ function MessageItem({ user, text, id, date, likes }) {
         </Card.Header>
         <Card.Body
           style={{
-            backgroundColor: "rgb(70, 87, 135 )",
             paddingTop: "2px",
             paddingLeft: "3px",
           }}
@@ -136,23 +141,32 @@ function MessageItem({ user, text, id, date, likes }) {
         </Card.Body>
         <Card.Footer
           style={{
-            backgroundColor: "rgb(0, 31, 126)",
             padding: "5px",
           }}
         >
-          <ButtonGroup toggle className="mb-2">
-            <ToggleButton
-              type="checkbox"
-              variant="primary"
-              checked={isLiked()}
-              value="1"
-              onChange={() => dispatch(toggleLike(isLiked(), id, getLikeId()))}
-            >
-              {isLiked() ? "unlike" : "like"}
-            </ToggleButton>
-          </ButtonGroup>{" "}
-          {likes.length} likes <br />
-          Date Created {date} {username === user ? <DeleteButton /> : null}
+          <div>
+            <ButtonGroup toggle className="mb-2">
+              <ToggleButton
+                type="checkbox"
+                className="likeBox"
+                variant="primary"
+                checked={isLiked()}
+                value="1"
+                onChange={() =>
+                  dispatch(toggleLike(isLiked(), id, getLikeId()))
+                }
+              ></ToggleButton>
+            </ButtonGroup>{" "}
+            {likes.length} like
+            {/* <div className="dropdown">
+              {" "}
+              <p>{likes.length} likes</p>{" "}
+              <div class="dropdown-content">
+                <p>Hello World!</p>
+              </div>
+            </div> */}
+          </div>
+          Date Created: {postDate} {username === user ? <DeleteButton /> : null}
         </Card.Footer>
       </Card>
     </>
