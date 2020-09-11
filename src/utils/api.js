@@ -1,5 +1,4 @@
 import axios from "axios";
-import thunk from "redux-thunk";
 
 class API {
   axiosInstance = null;
@@ -93,10 +92,10 @@ class API {
     }
   }
 
-  async initiateMessages() {
+  async initiateMessages(offset) {
     try {
       const result = await this.axiosInstance.get(
-        "/messages?limit=25&offset=0"
+        `/messages?limit=25&offset=${offset}`
       );
       return result;
     } catch (err) {
