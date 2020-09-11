@@ -7,7 +7,7 @@ import {
   GOT_USER_MESSAGES,
   GET_RECENTS,
   MERGE_QUEUE,
-  CLEAR_QUEUE
+  CLEAR_QUEUE, APPEND_SUCCESS, LOADING_MORE
 } from "../actions/messageActions";
 
 import { UPDATE_MESSAGE } from "../actions/likeAction";
@@ -18,7 +18,9 @@ const initialState = {
   loading: false,
   error: "",
   queue: [],
-  simple: "something"
+  offset: 25,
+  isInitialized: false,
+  loadingMore: false
 };
 
 const messageReducer = (state = initialState, action) => {
@@ -43,14 +45,14 @@ const messageReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        isInitialized: false,
         queue: []
       };
     case INITIATE_SUCCESS:
       return {
-        ...state,
-        loading: false,
+        ...initialState,
         messages: [...action.payload.messages],
-        queue: []
+        isInitialized: true
       };
     case INITIATE_FAILURE:
       return {
@@ -85,6 +87,18 @@ const messageReducer = (state = initialState, action) => {
         ...state,
         userMessages: [...action.payload.messages],
       };
+    case LOADING_MORE:
+      return {
+        ...state,
+        loadingMore: true
+      }
+    case APPEND_SUCCESS:
+      return {
+        ...state,
+        offset: state.offset + 25,
+        messages: [...state.messages, ...action.payload],
+        loadingMore: false
+      }
 
     default:
       return state;

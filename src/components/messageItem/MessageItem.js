@@ -9,6 +9,9 @@ import defaultPhoto from "../default_photo.jpg";
 
 function MessageItem({ user, text, id, date, likes }) {
   const [currentPhoto, setPhoto] = useState(false);
+  const [displayName, setDisplayname] = useState(false);
+  const [about, setAbout] = useState(false);
+
   const dispatch = useDispatch();
   const username = useSelector((state) => state.auth.username);
 
@@ -41,13 +44,15 @@ function MessageItem({ user, text, id, date, likes }) {
   };
 
   useEffect(() => {
-    fetchPhoto();
+    fetchUserInfo();
   }, []);
 
-  const fetchPhoto = () => {
+  const fetchUserInfo = () => {
     fetch(`https://kwitter-api.herokuapp.com/users/${user}`)
       .then((response) => response.json())
       .then(function (data) {
+        setDisplayname(data.user.displayName);
+        setAbout(data.user.about);
         if (data.user.pictureLocation !== null) {
           setPhoto(`https://kwitter-api.herokuapp.com/users/${user}/picture`);
         } else {
@@ -76,23 +81,43 @@ function MessageItem({ user, text, id, date, likes }) {
           style={{
             backgroundColor: "rgb(0, 31, 126)",
             padding: "5px",
+            display: "flex",
+            alignItems: "start",
+            height: "65px",
           }}
         >
-          <Card.Title
-            style={{
-              margin: "1px",
-            }}
-          >
-            {" "}
-            {currentPhoto && (
+          {currentPhoto && (
+            <>
               <Card.Img
                 src={currentPhoto}
-                style={{ width: "50px", borderRadius: "50%" }}
+                style={{
+                  width: "50px",
+                  borderRadius: "50%",
+                  height: "100%",
+                  backgroundImage: { currentPhoto },
+                }}
+                title={about && `About ${displayName}: ${about}`}
               />
-            )}
-            {"    "}
-            {user}
-          </Card.Title>
+            </>
+          )}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              paddingLeft: "5px",
+            }}
+          >
+            <Card.Title
+              style={{
+                margin: "1px",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {displayName && displayName}
+            </Card.Title>{" "}
+            <Card.Text style={{ paddingLeft: "0px" }}>@{user}</Card.Text>
+          </div>
         </Card.Header>
         <Card.Body
           style={{
