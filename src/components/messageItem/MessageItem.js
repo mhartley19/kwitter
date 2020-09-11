@@ -157,16 +157,23 @@ function MessageItem({ user, text, id, date, likes }) {
                 }
               ></ToggleButton>
             </ButtonGroup>{" "}
-            {likes.length} like
-            {/* <div className="dropdown">
+            <div className="dropdown">
               {" "}
-              <p>{likes.length} likes</p>{" "}
+              <p className="numOfLikes">{likes.length} likes</p>{" "}
               <div class="dropdown-content">
-                <p>Hello World!</p>
+                <strong>Liked by:</strong>
+                <ul>
+                  {likes.map((like) => (
+                    <li className="likeUser">{like.username}</li>
+                  ))}
+                </ul>
               </div>
-            </div> */}
+            </div>
           </div>
-          Date Created: {postDate} {username === user ? <DeleteButton /> : null}
+          <div>
+            Date Created: {postDate}{" "}
+            {username === user ? <DeleteButton /> : null}
+          </div>
         </Card.Footer>
       </Card>
     </>
