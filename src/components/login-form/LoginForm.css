@@ -1,5 +1,54 @@
+h1, h2, h3 {
+  text-align: center;
+}
+.header{
+  text-align: center;
+}
 #login-form {
   display: flex;
   flex-direction: column;
-  max-width: 20em;
+  max-width: 25em;
+  margin: 0 auto;
+  margin-top: 100px;
+  align-content: stretch;
+  align-items: center;
+justify-content: space-evenly;
+height: 200px;
+
+}
+
+#register-form{
+  display: flex;
+  flex-direction: column;
+  max-width: 25em;
+  margin: 0 auto;
+  margin-top: 100px;
+  align-content: stretch;
+  align-items: center;
+justify-content: space-evenly;
+height: 200px;
+
+}
+
+
+.form-item{
+  flex-grow: 1;
+}
+
+
+ #home-screen-header{
+  margin-bottom: 30px;
+ 
+  margin-top:20px;
+} 
+
+.kwitter-header{
+text-align: center;
+font-weight: 900;
+font-size:xx-large
+}
+
+
+.form-input{
+  width:256px;
 }

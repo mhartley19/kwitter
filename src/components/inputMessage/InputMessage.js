@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { newMessage } from "../../redux/actions/messageActions";
 import "./InputMessage.css";
+import {Button } from 'react-bootstrap'
 
 function InputMessage() {
   const [newMessageInput, setNewMessageInput] = useState("");
@@ -26,7 +27,7 @@ function InputMessage() {
           value={newMessageInput}
           placeholder="Post a new message"
         ></textarea>
-        <button onClick={handleNewMessage}>Post Message!</button>
+        <Button onClick={handleNewMessage}>Post Message!</Button>
       </div>
     </>
   );

@@ -1,12 +1,10 @@
 import React from "react";
 import { NewUserMenuContainer, RegisterFormContainer } from "../components";
+import {NavBarNewUser} from '../components/NavBar/NavBarNewUser'
 
 export const NewUserScreen = () => (
   <>
-    <NewUserMenuContainer />
-    <h2>Your favorite microblogging platform</h2>
-    
-    
+    <NavBarNewUser/>
     <RegisterFormContainer />
   </>
 );
