@@ -10,17 +10,20 @@ export const NewUserMenu = () => {
   const logout = () => dispatch(actions.logout());
   return (
     <div id="menu">
-      <h1>Kwitter</h1>
+      
       <div id="menu-links">
         {isAuthenticated ? (
           <>
+          
             <Link to="/profiles/:username">Profile Page</Link>
             <Link to="/messagefeed">Message Feed</Link>
             <Link to="/" onClick={logout}>
               Logout
             </Link>
           </>
-        ) : <Link to="/" onClick={logout}>Login Home</Link>}
+          
+        ) :
+        <Link to="/" onClick={logout}>Login Home</Link>}
       </div>
     </div>
   );

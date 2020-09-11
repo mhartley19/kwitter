@@ -4,6 +4,8 @@ import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
 import "./LoginForm.css";
 import { LoginError } from './Success_Error'
+import { Button } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 export const LoginForm = ({ login }) => {
   const { loading, error } = useSelector((state) => ({
@@ -31,9 +33,13 @@ export const LoginForm = ({ login }) => {
 
   return (
     <React.Fragment>
+    
       <form id="login-form" onSubmit={handleLogin}>
-        <label htmlFor="username">Username</label>
+    <h2 id="login-header" class='form-item'>Login</h2>
+        <label class="form-item" htmlFor="username">Username</label>
         <input
+          id='username'
+          class="form-item form-input"
           type="text"
           name="username"
           value={state.username}
@@ -41,17 +47,20 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleChange}
         />
-        <label htmlFor="password">Password</label>
+        <label class="form-item" htmlFor="password">Password</label>
         <input
+          id="password"
+          class="form-item form-input"
           type="password"
           name="password"
           value={state.password}
           required
           onChange={handleChange}
         />
-        <button type="submit" disabled={loading}>
+        <Button id="login-button" class="form-item"type="submit" disabled={loading}>
           Login
-        </button>
+        </Button>
+        <Link id="create-user-link" class="form-item link" to="/createNewUser">Create New User</Link>
       </form>
       {loading && <Loader />}
       {error && <LoginError/>}
