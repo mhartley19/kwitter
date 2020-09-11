@@ -4,6 +4,7 @@ import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
 import "./RegisterForm.css";
 import { CreateSuccessMessage, CreateUserError } from '../login-form/Success_Error'
+import { Button } from "react-bootstrap";
 
 
 
@@ -40,6 +41,7 @@ export const RegisterForm = ({ register }) => {
       <form id="register-form" onSubmit={handleRegister}>
         <label htmlFor="username">Username</label>
         <input
+          class='form-item form-input'
           type="text"
           name="username"
           value={state.username}
@@ -49,6 +51,7 @@ export const RegisterForm = ({ register }) => {
         />
         <label htmlFor="displayName">Display name</label>
         <input
+          class='form-item form-input'
           type="displayName"
           name="displayName"
           value={state.displayName}
@@ -57,15 +60,16 @@ export const RegisterForm = ({ register }) => {
         />
         <label htmlFor="password">Password</label>
         <input
+          class='form-item form-input'
           type="password"
           name="password"
           value={state.password}
           required
           onChange={handleChange}
         />
-        <button type="submit" disabled={loading} >
-          Login
-        </button>
+        <Button class='form-item' type="submit" disabled={loading} >
+          Create New User
+        </Button>
       </form>
       {loading && <Loader /> }
       {auth && <CreateSuccessMessage/>}

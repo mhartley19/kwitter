@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {Button} from "react-bootstrap"
 import {
   getRecents,
   mergeQueue,
@@ -24,9 +25,9 @@ function QueuedPosts({ lastId }) {
 
   return (
     <div>
-      <button onClick={() => dispatch(mergeQueue())}>
+      <Button onClick={() => dispatch(mergeQueue())}>
         {queue.length} unread posts
-      </button>
+      </Button>
     </div>
   );
 }

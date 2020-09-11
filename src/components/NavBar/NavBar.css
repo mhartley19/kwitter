@@ -1,0 +1,10 @@
+.navbar{
+    justify-content: flex-end;
+}
+.justify-content-end{
+    justify-content: flex-end;
+}
+
+.home-header{
+    text-align: center;
+}
