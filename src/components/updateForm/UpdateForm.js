@@ -29,36 +29,39 @@ export const UpdateForm = () => {
     setState((prevState) => ({ ...prevState, [inputName]: inputValue }));
   };
   return (
-    <React.Fragment>
-      <form id="login-form" onSubmit={handleUpdate}>
-        <label htmlFor="password">Change Password</label>
+    <>
+      <form id="Update-form" onSubmit={handleUpdate}>
         <input
           type="text"
           name="password"
+          className="updateInput"
           value={state.password}
+          placeholder="Change Password"
           autoFocus
           onChange={handleChange}
         />
-        <label htmlFor="about">Change About</label>
         <input
           type="text"
           name="about"
+          className="updateInput"
           value={state.about}
+          placeholder="Change About"
           onChange={handleChange}
         />
-        <label htmlFor="displayName">Change Display name</label>
         <input
           type="text"
           name="displayName"
+          className="updateInput"
           value={state.displayName}
+          placeholder="Change Display Name"
           onChange={handleChange}
         />
-        <button type="submit" disabled={loading}>
-          Update User
+        <button type="submit" className="updateInfoButton" disabled={loading}>
+          Update User Info
         </button>
       </form>
       {loading && <Loader />}
       {error && <p style={{ color: "red" }}>{error.message}</p>}
-    </React.Fragment>
+    </>
   );
 };
