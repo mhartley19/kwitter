@@ -7,7 +7,6 @@ export function ProfileScreen() {
   return (
     <>
       <MenuContainer />
-      <InputMessage />
       <UserProfile />
     </>
   );

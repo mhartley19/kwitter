@@ -41,7 +41,7 @@ export function MessageFeed() {
       <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "auto", position: "fixed", zIndex: "2" }}>
         <QueuedPosts />
       </div>
-      {/* <InputMessage /> */}
+
 
 
       {
@@ -70,11 +70,6 @@ export function MessageFeed() {
         )
       }
 
-
-      {/* <CreatePostModal
-        show={show}
-        onHide={() => dispatch(hideModal())}
-      /> */}
     </>
   );
 }
