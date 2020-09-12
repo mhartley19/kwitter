@@ -1,6 +1,7 @@
 import React from 'react'
 import { Nav, Navbar, Form, } from "react-bootstrap"
 import { NavLink } from 'react-router-dom'
+import './NavBar.css'
 
 export const NavBarHome = () => {
 
