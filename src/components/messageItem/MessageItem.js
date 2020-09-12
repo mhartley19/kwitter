@@ -69,7 +69,11 @@ function MessageItem({ user, text, id, date, likes }) {
     "-" +
     newDate.getDate() +
     "-" +
-    newDate.getFullYear();
+    newDate.getFullYear() +
+    " " +
+    newDate.getHours() +
+    ":" +
+    newDate.getMinutes();
 
   return (
     <>
@@ -160,14 +164,18 @@ function MessageItem({ user, text, id, date, likes }) {
             <div className="dropdown">
               {" "}
               <p className="numOfLikes">{likes.length} likes</p>{" "}
-              <div class="dropdown-content">
-                <strong>Liked by:</strong>
-                <ul>
-                  {likes.map((like) => (
-                    <li className="likeUser">{like.username}</li>
-                  ))}
-                </ul>
-              </div>
+              {likes.length > 0 && (
+                <div className="dropdown-content">
+                  <strong>Liked by:</strong>
+                  <ul>
+                    {likes.map((like) => (
+                      <li className="likeUser" key={like.id}>
+                        {like.username}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
           <div>
