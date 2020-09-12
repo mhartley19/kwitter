@@ -84,7 +84,7 @@ function MessageItem({ user, text, id, date, likes }) {
           flexDirection: "column",
           justifyContent: "left",
           alignItems: "left",
-          margin: "15px",
+          margin: "13px auto 13px auto",
           width: "500px",
         }}
       >
