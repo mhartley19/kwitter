@@ -1,25 +1,16 @@
-import React from 'react'
-import { Nav, Navbar, Form, } from "react-bootstrap"
-import './NavBar.css'
+import React from "react";
+import { Nav, Navbar, Form } from "react-bootstrap";
+
 export const NavBarNewUser = () => {
-  
-    return(
-        <>
-        <Navbar class='navbar' bg="primary" variant="dark">
-      
+  return (
+    <>
+      <Navbar bg="primary" variant="dark">
         <Nav className="mr-auto">
-          <div id="link-container">
-        <Nav.Link href="/">Home</Nav.Link>
-        </div>
-            
-            
-          
+          <Nav.Link href="/">Home</Nav.Link>
         </Nav>
-        
-        <Form inline>
-        
-        </Form>
-        
+
+        <Form inline></Form>
       </Navbar>
-      </>)
-}
+    </>
+  );
+};
