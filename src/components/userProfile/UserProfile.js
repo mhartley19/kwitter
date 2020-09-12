@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userMessages } from "../../redux/actions/messageActions";
 import { getUserInfo, putUserPicture } from "../../redux/actions/userProfile";
 import { UpdateForm } from "../updateForm/UpdateForm";
+import defaultPhoto from "../default_photo.jpg";
 import "./UserProfile.css";
 
 function UserProfile() {
@@ -61,22 +62,35 @@ function UserProfile() {
           style={{
             border: "1px solid black",
             margin: "15px",
-            width: "300px",
+            width: "315px",
             height: "fit-content",
           }}
         >
-          <Card.Header style={{ width: "300px" }}>
+          <Card.Header
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <Card.Img
               className="profilePicture"
               alt={userInfo.username}
               key={userInfo.username}
-              src={`https://kwitter-api.herokuapp.com${userInfo.pictureLocation}`}
+              src={
+                userInfo.pictureLocation
+                  ? `https://kwitter-api.herokuapp.com${userInfo.pictureLocation}`
+                  : defaultPhoto
+              }
             />
             <br />
-            <Card.Title>{userInfo.displayName}</Card.Title>
+            <Card.Title className="profileHeader">
+              {userInfo.displayName}
+            </Card.Title>
             <Card.Text>(username: {userInfo.username})</Card.Text>
           </Card.Header>
           <Card.Body
+            className="ProfileBody"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -84,21 +98,32 @@ function UserProfile() {
               backgroundColor: "rgb(70, 87, 135 )",
               paddingTop: "2px",
               paddingLeft: "3px",
-              width: "300px",
               height: "fit-content",
             }}
           >
-            <input
-              type="file"
-              id="ProfilePicture"
-              class="customFileIinput"
-              name="Add Picture"
-              accept=".gif, .jpeg, .png, .jpg"
-              onChange={onFileChange}
-            />
-            <Button onClick={onFileUpload}>Upload!</Button>
-            <Card.Text>bio: {userInfo.about} </Card.Text>
-            {user.username === userInfo.username && <UpdateForm />}
+            <Card.Text
+              style={{
+                padding: "5px",
+              }}
+            >
+              <strong>About me: </strong>
+              {userInfo.about}{" "}
+            </Card.Text>
+            <details>
+              <summary>Update User Info</summary>
+              <input
+                type="file"
+                id="ProfilePicture"
+                className="customFileIinput"
+                name="Add Picture"
+                accept=".gif, .jpeg, .png, .jpg"
+                onChange={onFileChange}
+              />
+              <Button className="uploadPhotoButton" onClick={onFileUpload}>
+                Upload Photo
+              </Button>
+              {user.username === userInfo.username && <UpdateForm />}
+            </details>
           </Card.Body>
           <Card.Footer
             style={{
