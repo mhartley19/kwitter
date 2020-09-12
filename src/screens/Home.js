@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { NavBarHome } from "../components/NavBar/NavBarHome";
 
 export const HomeScreen = () => (
-  <>
-    <NavBarHome />
+  <><div>
+  <NavBarHome/>
     <MenuContainer />
     <h1 className="kwitter-header">Kwitter</h1>
     <h2 id="home-screen-header" className="header">
@@ -13,5 +13,8 @@ export const HomeScreen = () => (
     </h2>
 
     <LoginFormContainer />
+    </div>
+    
+    
   </>
 );

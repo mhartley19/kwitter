@@ -10,8 +10,17 @@
   justify-content: flex-end;
 }
 
-.home-header {
-  text-align: center;
+.navbar{
+    background-color: #7289DA;
+    display: flex;
+    flex-direction: row-reverse;
+   
+}
+.mr-auto .navbar-nav{
+    display: flex;
+    
+    flex-direction: row-reverse;
+    align-content: flex-end;
 }
 
 #theDiv {
