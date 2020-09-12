@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MessageItem from "../messageItem/MessageItem";
 import { Card, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,9 +9,12 @@ import defaultPhoto from "../default_photo.jpg";
 import "./UserProfile.css";
 
 function UserProfile() {
-  const picture = {
+  const [picture, setPicture] = useState({
     selectedFile: null,
-  };
+    value: undefined,
+    profilePicture: defaultPhoto,
+    isUploaded: false,
+  });
 
   const user = useSelector((state) => state.auth);
   const userInfo = useSelector((state) => state.user);
@@ -26,6 +29,10 @@ function UserProfile() {
     if (picture.selectedFile) {
       const pictureData = new FormData();
       pictureData.append("picture", picture.selectedFile);
+      setPicture({
+        isUploaded: true,
+        profilePicture: `https://kwitter-api.herokuapp.com/users/${userInfo.username}/picture`,
+      });
       dispatch(putUserPicture(userInfo.username, pictureData));
     } else {
       alert("Please select a file.");
@@ -78,9 +85,9 @@ function UserProfile() {
               alt={userInfo.username}
               key={userInfo.username}
               src={
-                userInfo.pictureLocation
-                  ? `https://kwitter-api.herokuapp.com${userInfo.pictureLocation}`
-                  : defaultPhoto
+                userInfo.pictureLocation === null
+                  ? picture.profilePicture
+                  : `https://kwitter-api.herokuapp.com/users/${userInfo.username}/picture`
               }
             />
             <br />
@@ -114,6 +121,7 @@ function UserProfile() {
               <input
                 type="file"
                 id="ProfilePicture"
+                value={picture.value}
                 className="customFileIinput"
                 name="Add Picture"
                 accept=".gif, .jpeg, .png, .jpg"
@@ -122,6 +130,9 @@ function UserProfile() {
               <Button className="uploadPhotoButton" onClick={onFileUpload}>
                 Upload Photo
               </Button>
+              {picture.isUploaded ? (
+                <Card.Text>Uploaded Sucessfully</Card.Text>
+              ) : null}
               {user.username === userInfo.username && <UpdateForm />}
             </details>
           </Card.Body>

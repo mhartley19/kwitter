@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from "../../redux/actions/users";
+import { getUserInfo } from "../../redux/actions/userProfile";
 import { Loader } from "../loader";
 
 export const UpdateForm = () => {
@@ -10,8 +11,8 @@ export const UpdateForm = () => {
     error: state.auth.error,
   }));
 
+  const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
   const [state, setState] = useState({
     password: "",
     displayName: "",
@@ -20,7 +21,22 @@ export const UpdateForm = () => {
 
   const handleUpdate = (event) => {
     event.preventDefault();
+    if (state.password === "") {
+      setState({ password: userInfo });
+    }
+    if (state.displayName === "") {
+      setState({ displayName: userInfo.displayName });
+    }
+    if (state.about === "") {
+      setState({ about: userInfo.about });
+    }
     dispatch(updateUser({ username, ...state }));
+    dispatch(getUserInfo(username));
+    setState({
+      password: "",
+      displayName: "",
+      about: "",
+    });
   };
 
   const handleChange = (event) => {
