@@ -1,13 +1,17 @@
 import React from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../../redux/actions/auth";
 import { Nav, Navbar, Form, Button } from "react-bootstrap";
-import { showModal } from "../../redux/actions";
+import { showModal, hideModal } from "../../redux/actions";
+import CreatePostModal from "../createPostModal/createPostModal"
+
+
 
 export const NavBar = () => {
   const dispatch = useDispatch();
   const logout = () => dispatch(actions.logout());
+  const show = useSelector((state) => state.postMessage.show);
 
 
   return (
@@ -34,6 +38,12 @@ export const NavBar = () => {
       </Button>
 
       <Form inline></Form>
+
+      <CreatePostModal
+        show={show}
+        onHide={() => dispatch(hideModal())}
+      />
+
     </Navbar>
   );
 };

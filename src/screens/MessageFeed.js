@@ -8,6 +8,7 @@ import InputMessage from "../components/inputMessage/InputMessage";
 import InfiniteScroll from "react-infinite-scroller";
 import CreatePostModal from "../components/createPostModal/createPostModal"
 import { hideModal } from "../redux/actions";
+import { Spinner } from "react-bootstrap"
 // import "./Screens.css";
 
 export function MessageFeed() {
@@ -42,38 +43,38 @@ export function MessageFeed() {
       </div>
       {/* <InputMessage /> */}
 
-      <div style={{ margin: "auto" }}>
-        {
-          isInitialized && (
-            <InfiniteScroll
-              pageStart={0}
-              loadMore={handleLoadMore}
-              hasMore={true || false}
-              loader={
-                <div className="loader" key={0}>
-                  Loading ...
-            </div>
-              }
-            >
-              {messages.map((message) => (
-                <MessageItem
-                  user={message.username}
-                  text={message.text}
-                  id={message.id}
-                  date={message.createdAt}
-                  likes={message.likes}
-                  key={message.id}
-                />
-              ))}
-            </InfiniteScroll>
-          )
-        }
-      </div>
 
-      <CreatePostModal
+      {
+        isInitialized && (
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={handleLoadMore}
+            hasMore={true || false}
+            loader={
+              <Spinner key={Math.random()} animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            }
+          >
+            {messages.map((message) => (
+              <MessageItem
+                user={message.username}
+                text={message.text}
+                id={message.id}
+                date={message.createdAt}
+                likes={message.likes}
+                key={message.id}
+              />
+            ))}
+          </InfiniteScroll>
+        )
+      }
+
+
+      {/* <CreatePostModal
         show={show}
         onHide={() => dispatch(hideModal())}
-      />
+      /> */}
     </>
   );
 }
