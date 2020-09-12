@@ -1,24 +1,18 @@
-img{
-    height: 200px;
-    width: 250px;
-    margin: auto 0;
-    border-radius: 25%;
-   
+img {
+  height: 200px;
+  width: 250px;
+  margin: auto 0;
+  border-radius: 25%;
 }
 
-#not-found{
-    left: 400px;
-    padding-left: 835px;
-    padding-top:200px;
-    animation: mymove 5s infinite;
+#not-found {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes mymove {
-    from {left: 0px;}
-    to   {left: 300px;
-    } 
-}
-
-#text{
-    font-size: xx-large
+#text {
+  font-size: xx-large;
 }
