@@ -69,7 +69,11 @@ function MessageItem({ user, text, id, date, likes }) {
     "-" +
     newDate.getDate() +
     "-" +
-    newDate.getFullYear();
+    newDate.getFullYear() +
+    " " +
+    newDate.getHours() +
+    ":" +
+    newDate.getMinutes();
 
   return (
     <>
