@@ -54,7 +54,16 @@ export function MessageFeed() {
           loadMore={handleLoadMore}
           hasMore={true || false}
           loader={
-            <Spinner key={Math.random()} animation="border" role="status">
+            <Spinner
+              key={Math.random()}
+              animation="border"
+              role="status"
+              style={{
+                display: "block",
+                marginLeft: "auto",
+                marginRight: "auto",
+              }}
+            >
               <span className="sr-only">Loading...</span>
             </Spinner>
           }
