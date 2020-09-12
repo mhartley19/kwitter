@@ -69,7 +69,11 @@ function MessageItem({ user, text, id, date, likes }) {
     "-" +
     newDate.getDate() +
     "-" +
-    newDate.getFullYear();
+    newDate.getFullYear() +
+    " " +
+    newDate.getHours() +
+    ":" +
+    newDate.getMinutes();
 
   return (
     <>
@@ -80,7 +84,7 @@ function MessageItem({ user, text, id, date, likes }) {
           flexDirection: "column",
           justifyContent: "left",
           alignItems: "left",
-          margin: "15px",
+          margin: "13px auto 13px auto",
           width: "500px",
         }}
       >
@@ -157,16 +161,27 @@ function MessageItem({ user, text, id, date, likes }) {
                 }
               ></ToggleButton>
             </ButtonGroup>{" "}
-            {likes.length} like
-            {/* <div className="dropdown">
+            <div className="dropdown">
               {" "}
-              <p>{likes.length} likes</p>{" "}
-              <div class="dropdown-content">
-                <p>Hello World!</p>
-              </div>
-            </div> */}
+              <p className="numOfLikes">{likes.length} likes</p>{" "}
+              {likes.length > 0 && (
+                <div className="dropdown-content">
+                  <strong>Liked by:</strong>
+                  <ul>
+                    {likes.map((like) => (
+                      <li className="likeUser" key={like.id}>
+                        {like.username}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
-          Date Created: {postDate} {username === user ? <DeleteButton /> : null}
+          <div>
+            Date Created: {postDate}{" "}
+            {username === user ? <DeleteButton /> : null}
+          </div>
         </Card.Footer>
       </Card>
     </>

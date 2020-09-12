@@ -1,7 +1,13 @@
-#link-container{
-    display:flex;
-    justify-content: flex-end;
-    width: 1860px;
+.navbar {
+  justify-content: flex-end;
+}
+
+.nav-link {
+  color: white;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
 }
 
 .navbar{
@@ -16,4 +22,11 @@
     flex-direction: row-reverse;
     align-content: flex-end;
 }
+
+#theDiv {
+  display: flex;
+}
+
+
+
 

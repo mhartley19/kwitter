@@ -7,8 +7,8 @@ export const HomeScreen = () => (
   <><div>
   <NavBarHome/>
     <MenuContainer />
-    <h1 class="kwitter-header">Kwitter</h1>
-    <h2 id="home-screen-header" class="header">
+    <h1 className="kwitter-header">Kwitter</h1>
+    <h2 id="home-screen-header" className="header">
       Your favorite microblogging platform
     </h2>
 

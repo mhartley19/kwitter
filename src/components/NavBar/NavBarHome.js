@@ -4,17 +4,24 @@ import { NavLink } from 'react-router-dom'
 import './NavBar.css'
 
 export const NavBarHome = () => {
-  
-    return(
+
+    return (
         <>
-        <Navbar class='navbar' bg="primary" variant="dark">
-        <Nav className="mr-auto">
-           <h3 class="home-header">Team Query</h3>
-          <Navbar.Collapse className="justify-content-end">     
-              </Navbar.Collapse>
-        </Nav> 
-        <Form inline>
-        </Form>
-      </Navbar>
-      </>)
+            <Navbar bg="primary" variant="dark">
+
+                <Nav className="mr-auto">
+                    <h3 className="home-header">Team Query</h3>
+
+                    <Navbar.Collapse className="justify-content-end">
+
+                    </Navbar.Collapse>
+
+                </Nav>
+
+                <Form inline>
+
+                </Form>
+
+            </Navbar>
+        </>)
 }
