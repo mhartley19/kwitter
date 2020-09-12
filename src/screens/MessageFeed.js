@@ -6,6 +6,9 @@ import { MenuContainer } from "../components";
 import QueuedPosts from "../components/queued-posts/QueuedPosts";
 import InputMessage from "../components/inputMessage/InputMessage";
 import InfiniteScroll from "react-infinite-scroller";
+import CreatePostModal from "../components/createPostModal/createPostModal"
+import { hideModal } from "../redux/actions";
+import { Spinner } from "react-bootstrap"
 // import "./Screens.css";
 
 export function MessageFeed() {
@@ -16,6 +19,7 @@ export function MessageFeed() {
   const loadingMore = useSelector((state) => state.messageReducer.loadingMore);
   const offset = useSelector((state) => state.messageReducer.offset);
   const queue = useSelector((state) => state.messageReducer.queue);
+  const show = useSelector((state) => state.postMessage.show);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,7 +41,7 @@ export function MessageFeed() {
       <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "auto", position: "fixed", zIndex: "2" }}>
         <QueuedPosts />
       </div>
-      <InputMessage />
+
 
 
       {
@@ -47,9 +51,9 @@ export function MessageFeed() {
             loadMore={handleLoadMore}
             hasMore={true || false}
             loader={
-              <div className="loader" key={0}>
-                Loading ...
-            </div>
+              <Spinner key={Math.random()} animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
             }
           >
             {messages.map((message) => (
@@ -65,6 +69,7 @@ export function MessageFeed() {
           </InfiniteScroll>
         )
       }
+
     </>
   );
 }

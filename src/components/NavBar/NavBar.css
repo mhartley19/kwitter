@@ -1,6 +1,11 @@
 .navbar {
   justify-content: flex-end;
 }
+
+.nav-link {
+  color: white;
+}
+
 .justify-content-end {
   justify-content: flex-end;
 }
