@@ -80,7 +80,7 @@ function MessageItem({ user, text, id, date, likes }) {
           flexDirection: "column",
           justifyContent: "left",
           alignItems: "left",
-          margin: "15px",
+          margin: "13px auto 13px auto",
           width: "500px",
         }}
       >
@@ -160,11 +160,11 @@ function MessageItem({ user, text, id, date, likes }) {
             <div className="dropdown">
               {" "}
               <p className="numOfLikes">{likes.length} likes</p>{" "}
-              <div class="dropdown-content">
+              <div className="dropdown-content">
                 <strong>Liked by:</strong>
                 <ul>
                   {likes.map((like) => (
-                    <li className="likeUser">{like.username}</li>
+                    <li key={like.id} className="likeUser">{like.username}</li>
                   ))}
                 </ul>
               </div>

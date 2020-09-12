@@ -6,6 +6,8 @@ import { MenuContainer } from "../components";
 import QueuedPosts from "../components/queued-posts/QueuedPosts";
 import InputMessage from "../components/inputMessage/InputMessage";
 import InfiniteScroll from "react-infinite-scroller";
+import CreatePostModal from "../components/createPostModal/createPostModal"
+import { hideModal } from "../redux/actions";
 // import "./Screens.css";
 
 export function MessageFeed() {
@@ -16,6 +18,7 @@ export function MessageFeed() {
   const loadingMore = useSelector((state) => state.messageReducer.loadingMore);
   const offset = useSelector((state) => state.messageReducer.offset);
   const queue = useSelector((state) => state.messageReducer.queue);
+  const show = useSelector((state) => state.postMessage.show);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,34 +40,40 @@ export function MessageFeed() {
       <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "auto", position: "fixed", zIndex: "2" }}>
         <QueuedPosts />
       </div>
-      <InputMessage />
+      {/* <InputMessage /> */}
 
-
-      {
-        isInitialized && (
-          <InfiniteScroll
-            pageStart={0}
-            loadMore={handleLoadMore}
-            hasMore={true || false}
-            loader={
-              <div className="loader" key={0}>
-                Loading ...
+      <div style={{ margin: "auto" }}>
+        {
+          isInitialized && (
+            <InfiniteScroll
+              pageStart={0}
+              loadMore={handleLoadMore}
+              hasMore={true || false}
+              loader={
+                <div className="loader" key={0}>
+                  Loading ...
             </div>
-            }
-          >
-            {messages.map((message) => (
-              <MessageItem
-                user={message.username}
-                text={message.text}
-                id={message.id}
-                date={message.createdAt}
-                likes={message.likes}
-                key={message.id}
-              />
-            ))}
-          </InfiniteScroll>
-        )
-      }
+              }
+            >
+              {messages.map((message) => (
+                <MessageItem
+                  user={message.username}
+                  text={message.text}
+                  id={message.id}
+                  date={message.createdAt}
+                  likes={message.likes}
+                  key={message.id}
+                />
+              ))}
+            </InfiniteScroll>
+          )
+        }
+      </div>
+
+      <CreatePostModal
+        show={show}
+        onHide={() => dispatch(hideModal())}
+      />
     </>
   );
 }
