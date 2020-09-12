@@ -1,5 +1,6 @@
-.navbar {
-  justify-content: flex-end;
+.navbar-expand {
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav-link {
@@ -10,23 +11,18 @@
   justify-content: flex-end;
 }
 
-.navbar{
-    background-color: #7289DA;
-    display: flex;
-    flex-direction: row-reverse;
-   
+.navbar {
+  background-color: #7289da;
+  display: flex;
+  flex-direction: row-reverse;
 }
-.mr-auto .navbar-nav{
-    display: flex;
-    
-    flex-direction: row-reverse;
-    align-content: flex-end;
+.mr-auto .navbar-nav {
+  display: flex;
+
+  flex-direction: row-reverse;
+  align-content: flex-end;
 }
 
 #theDiv {
   display: flex;
 }
-
-
-
-
