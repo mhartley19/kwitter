@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../../redux/actions/auth";
 import { Loader } from "../loader";
 import "./LoginForm.css";
-import { LoginError } from './Success_Error'
-import { Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { LoginError } from "./Success_Error";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const LoginForm = ({ login }) => {
   const { loading, error } = useSelector((state) => ({
@@ -33,12 +33,21 @@ export const LoginForm = ({ login }) => {
 
   return (
     <React.Fragment>
-
       <form id="login-form" onSubmit={handleLogin}>
-        <h2 id="login-header" className='form-item'>Login</h2>
-        <label className="form-item" htmlFor="username">Username</label>
+        <h2
+          id="login-header"
+          className="form-item"
+          style={{
+            fontFamily: "'Orbitron', sans-serif",
+          }}
+        >
+          Login
+        </h2>
+        <label className="form-item" htmlFor="username">
+          Username
+        </label>
         <input
-          id='username'
+          id="username"
           className="form-item form-input"
           type="text"
           name="username"
@@ -47,7 +56,9 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleChange}
         />
-        <label className="form-item" htmlFor="password">Password</label>
+        <label className="form-item" htmlFor="password">
+          Password
+        </label>
         <input
           id="password"
           className="form-item form-input"
@@ -57,10 +68,21 @@ export const LoginForm = ({ login }) => {
           required
           onChange={handleChange}
         />
-        <Button id="login-button" className="form-item" type="submit" disabled={loading}>
+        <Button
+          id="login-button"
+          className="form-item"
+          type="submit"
+          disabled={loading}
+        >
           Login
         </Button>
-        <Link id="create-user-link" className="form-item link" to="/createNewUser">Create New User</Link>
+        <Link
+          id="create-user-link"
+          className="form-item link"
+          to="/createNewUser"
+        >
+          Create New User
+        </Link>
       </form>
       {loading && <Loader />}
       {error && <LoginError />}
