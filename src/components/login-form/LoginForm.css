@@ -1,7 +1,9 @@
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   text-align: center;
 }
-.header{
+.header {
   text-align: center;
 }
 #login-form {
@@ -12,12 +14,20 @@ h1, h2, h3 {
   margin-top: 100px;
   align-content: stretch;
   align-items: center;
-justify-content: space-evenly;
-height: 200px;
-
+  justify-content: space-evenly;
+  height: 200px;
 }
 
-#register-form{
+#login-button {
+  background-color: #7289da;
+  border: none;
+  margin-top: 5px;
+}
+#login-button:hover {
+  background-color: rgb(99, 119, 192);
+}
+
+#register-form {
   display: flex;
   flex-direction: column;
   max-width: 25em;
@@ -25,30 +35,34 @@ height: 200px;
   margin-top: 100px;
   align-content: stretch;
   align-items: center;
-justify-content: space-evenly;
-height: 200px;
-
+  justify-content: space-evenly;
+  height: 200px;
 }
 
-
-.form-item{
+.form-item {
   flex-grow: 1;
 }
 
-
- #home-screen-header{
+#home-screen-header {
   margin-bottom: 30px;
- 
-  margin-top:20px;
-} 
 
-.kwitter-header{
-text-align: center;
-font-weight: 900;
-font-size:xx-large
+  margin-top: 20px;
 }
 
+.kwitter-header {
+  text-align: center;
+  font-weight: 900;
+  font-size: xx-large;
+}
 
-.form-input{
-  width:256px;
+.form-input {
+  width: 256px;
+}
+
+#create-user-link {
+  color: #7289da;
+}
+
+#create-user-link:hover {
+  color: #86a1ff;
 }

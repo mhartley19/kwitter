@@ -72,7 +72,6 @@ export const NavBar = () => {
           alignItems: "center",
         }}
       >
-        post message
         <Button
           style={{ padding: "5px" }}
           variant="dark"
