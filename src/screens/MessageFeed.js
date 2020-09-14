@@ -42,7 +42,7 @@ export function MessageFeed() {
           justifyContent: "center",
           margin: "auto",
           position: "fixed",
-          zIndex: "2",
+          zIndex: "1",
         }}
       >
         <QueuedPosts />
