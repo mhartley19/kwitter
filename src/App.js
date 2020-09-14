@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { PersistGate } from "redux-persist/integration/react";
 import { Navigation } from "./components";
 import configureStore from "./redux/configureStore";
-import "./screens/screens.css";
+import "./screens/ScreensCSS.css";
 
 const { store, persistor } = configureStore();
 
