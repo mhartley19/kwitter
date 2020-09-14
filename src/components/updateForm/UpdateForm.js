@@ -11,7 +11,6 @@ export const UpdateForm = () => {
     error: state.auth.error,
   }));
 
-  const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [state, setState] = useState({
     password: "",

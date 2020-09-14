@@ -63,6 +63,14 @@ function MessageItem({ user, text, id, date, likes }) {
   };
 
   let newDate = new Date(date);
+  function minutes() {
+    let minute = newDate.getMinutes();
+    if (minute < 10) {
+      return "0" + minute;
+    } else {
+      return minute;
+    }
+  }
   let postDate =
     newDate.getMonth() +
     1 +
@@ -73,7 +81,7 @@ function MessageItem({ user, text, id, date, likes }) {
     " " +
     newDate.getHours() +
     ":" +
-    newDate.getMinutes();
+    minutes();
 
   return (
     <>
