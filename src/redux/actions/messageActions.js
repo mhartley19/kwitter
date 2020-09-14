@@ -1,4 +1,5 @@
 import api from "../../utils/api";
+import { hideModal } from "./postMessage";
 
 export const FETCH_MESSAGES = "FETCH MESSAGES";
 export const LOADING_MESSAGES = "LOADING MESSAGES";
@@ -87,6 +88,7 @@ export const fetchMessages = () => async (dispatch, getState) => {
 export const newMessage = (data) => async (dispatch) => {
   try {
     const payload = await api.createNewMessage(data);
+    dispatch(hideModal())
   } catch (err) { }
 };
 
