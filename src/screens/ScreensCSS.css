@@ -2,3 +2,34 @@ body {
   background-color: #2c2f33;
   color: whitesmoke;
 }
+
+body {
+  background-color: #2c2f33;
+  color: whitesmoke;
+}
+
+.modal-header {
+  background-color: #2c2f33;
+}
+.modal-body {
+  background-color: #2c2f33;
+}
+.modal-footer {
+  background-color: #2c2f33;
+}
+
+textarea.form-control {
+  resize: none;
+  outline: none;
+  background: black;
+  color: white;
+  background-color: #2c2f33;
+}
+
+.queuedPost {
+  background-color: #7d97f5;
+}
+.queuedPost:hover {
+  background-color: rgb(99, 119, 192);
+  text-decoration: none;
+}
