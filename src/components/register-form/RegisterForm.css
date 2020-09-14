@@ -3,3 +3,12 @@
   flex-direction: column;
   max-width: 20em;
 }
+
+#newUserButton {
+  background-color: #7289da;
+  border: none;
+  margin-top: 5px;
+}
+#newUserButton.btn.btn-primary:hover {
+  background-color: #5a6ba8;
+}
