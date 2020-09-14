@@ -5,8 +5,6 @@ import { fetchMessages, appendMessages } from "../redux/actions/messageActions";
 import { MenuContainer } from "../components";
 import QueuedPosts from "../components/queued-posts/QueuedPosts";
 import InfiniteScroll from "react-infinite-scroller";
-import CreatePostModal from "../components/createPostModal/createPostModal";
-import { hideModal } from "../redux/actions";
 import { Spinner } from "react-bootstrap";
 
 export function MessageFeed() {
@@ -16,8 +14,6 @@ export function MessageFeed() {
   );
   const loadingMore = useSelector((state) => state.messageReducer.loadingMore);
   const offset = useSelector((state) => state.messageReducer.offset);
-  const queue = useSelector((state) => state.messageReducer.queue);
-  const show = useSelector((state) => state.postMessage.show);
   const dispatch = useDispatch();
 
   useEffect(() => {
