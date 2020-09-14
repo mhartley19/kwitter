@@ -16,6 +16,8 @@ export const NavBar = () => {
       sticky="top"
       variant="dark"
       style={{
+        display: "flex",
+        flexDirection: "row",
         top: "0px",
         height: "50px",
         zIndex: "2",
