@@ -49,15 +49,13 @@ function MessageItem({ user, text, id, date, likes }) {
   }, []);
 
   const fetchUserInfo = () => {
-    fetch(`https://kwitter-api-b.herokuapp.com//users/${user}`)
+    fetch(`https://kwitter-api-b.herokuapp.com/users/${user}`)
       .then((response) => response.json())
       .then(function (data) {
         setDisplayname(data.user.displayName);
         setAbout(data.user.about);
         if (data.user.pictureLocation !== null) {
-          setPhoto(
-            `https://kwitter-api-b.herokuapp.com//users/${user}/picture`
-          );
+          setPhoto(`https://kwitter-api-b.herokuapp.com/users/${user}/picture`);
         } else {
           setPhoto(defaultPhoto);
         }
