@@ -9,7 +9,8 @@ class API {
       https://create-react-app.dev/docs/adding-custom-environment-variables/
     */
     const axiosInstance = axios.create({
-      baseURL: "https://kwitter-api.herokuapp.com/",
+      // baseURL: "https://socialapp-api.herokuapp.com/",
+      baseURL: "http://kwitter-api-b.herokuapp.com/",
       timeout: 30000,
       headers: { Authorization: `Bearer ${getToken()}` },
     });
