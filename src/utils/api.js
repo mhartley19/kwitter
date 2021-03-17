@@ -10,7 +10,7 @@ class API {
     */
     const axiosInstance = axios.create({
       // baseURL: "https://socialapp-api.herokuapp.com/",
-      baseURL: "http://kwitter-api-b.herokuapp.com/",
+      baseURL: "https://kwitter-api-b.herokuapp.com/",
       timeout: 30000,
       headers: { Authorization: `Bearer ${getToken()}` },
     });
@@ -208,7 +208,7 @@ function helpMeInstructor(err) {
     Did you hit CORRECT the endpoint?
     Did you send the CORRECT data?
     Did you make the CORRECT kind of request [GET/POST/PATCH/DELETE]?
-    Check the Kwitter docs 👉🏿 https://kwitter-api.herokuapp.com/docs/#/
+    Check the Kwitter docs 👉🏿 https://kwitter-api-b.herokuapp.com/docs/#/
     Check the Axios docs 👉🏿 https://github.com/axios/axios
     TODO: troll students
   `,

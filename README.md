@@ -1,4 +1,5 @@
 query group
+
 ## Overview
 
 You will be working in teams to make a clone of a common micro-blogging platform. You will be given a back-end API for you to form your front-end application around.
@@ -35,7 +36,7 @@ An overview of the starting scaffolding architecture can be found in `./dependen
 1. Create a Scrum board (trello, github/gitlab project board, etc.)
    - [trello scrum example](https://trello.com/b/0xzkRjTH/scrum-project-management-board)
 2. Plan out your first week sprint goals.
-3. Familiarize yourself with [the API](https://kwitter-api.herokuapp.com/docs/)
+3. Familiarize yourself with [the API](https://kwitter-api-b.herokuapp.com/docs/)
 4. Create mock ups for possible pages
 5. Break each page out into possible components
 6. Discuss API endpoints you'll hit, how you'll store data in your Redux store, and which components will need access to the store

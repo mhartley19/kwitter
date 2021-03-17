@@ -31,7 +31,7 @@ function UserProfile() {
       pictureData.append("picture", picture.selectedFile);
       setPicture({
         isUploaded: true,
-        profilePicture: `https://kwitter-api.herokuapp.com/users/${userInfo.username}/picture`,
+        profilePicture: `https://kwitter-api-b.herokuapp.com/users/${userInfo.username}/picture`,
       });
       dispatch(putUserPicture(userInfo.username, pictureData));
     } else {
@@ -87,7 +87,7 @@ function UserProfile() {
               src={
                 userInfo.pictureLocation === null
                   ? picture.profilePicture
-                  : `https://kwitter-api.herokuapp.com/users/${userInfo.username}/picture`
+                  : `https://kwitter-api-b.herokuapp.com/users/${userInfo.username}/picture`
               }
             />
             <br />
