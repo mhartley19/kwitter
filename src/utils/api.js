@@ -10,7 +10,7 @@ class API {
     */
     const axiosInstance = axios.create({
       // baseURL: "https://socialapp-api.herokuapp.com/",
-      baseURL: "http://kwitter-api-b.herokuapp.com/",
+      baseURL: "https://kwitter-api-b.herokuapp.com/",
       timeout: 30000,
       headers: { Authorization: `Bearer ${getToken()}` },
     });
